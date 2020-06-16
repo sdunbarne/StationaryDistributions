@@ -1,0 +1,82 @@
+
+\begin{description}
+
+%% \item[Geogebra] 
+
+%% \link{  .ggb}{GeoGebra applet}
+
+\item[R] 
+
+\link{http://www.math.unl.edu/~sdunbar1/stationarydistributions.R}{R script for Stationary Distributions.}
+
+\begin{lstlisting}[language=R]
+library("markovchain")
+
+rows = 6
+
+stateNames <- c("OCO","OFO","OOO", "OOV", "VO", "VV")
+P <- matrix(c(1/2,   0,  0,  0,   0, 1/2,
+                0, 1/2,  0,  0, 1/4, 1/4,
+              0,   0, 1/2, 0, 1/2,   0,
+              0,   0, 0,   1/2, 1/2, 0,
+              1/6, 1/6, 1/6, 0, 1/2, 0,
+              1/6, 1/6,  0, 1/6, 0, 1/2), 
+             nrow=rows, byrow=TRUE)
+rownames(P) <- stateNames
+colnames(P) <- stateNames
+
+startState  <- "VV"
+
+bathroom  <- new("markovchain", transitionMatrix=P,
+                 states=stateNames, name="Bathroom_Occupancy")
+print( summary(bathroom) )
+
+pathLength  <- 20
+bathroomHistory  <- rmarkovchain(n=pathLength, object=bathroom,
+                                 t0=startState)
+cat("A sample history, starting from VV: ", bathroomHistory, "\n")
+
+largeN  <- 4000
+startStable <- 2000
+history  <- rmarkovchain(n=largeN, object=bathroom, t0=startState)
+stablePattern  <- history[startStable:largeN]
+empiricalStable <- c(mean( stablePattern == "OCO" ),
+                     mean( stablePattern == "OFO" ),
+                     mean( stablePattern == "OOO" ),
+                     mean( stablePattern == "OOV" ),
+                     mean( stablePattern == "VO"  ),
+                     mean( stablePattern == "VV"  )
+                    )
+theorStable <- steadyStates(bathroom)
+cat("Empirical stable distribution: ",  empiricalStable, "\n")
+cat("Theoretical stable distribution: ", theorStable, "\n")
+
+\end{lstlisting}  
+
+%% \item[Octave]
+
+%% \link{http://www.math.unl.edu/~sdunbar1/    .m}{Octave script for .}
+
+%% \begin{lstlisting}[language=Octave]
+
+%% \end{lstlisting}
+
+%% \item[Perl] 
+
+%% \link{http://www.math.unl.edu/~sdunbar1/    .pl}{Perl PDL script for .}
+
+%% \begin{lstlisting}[language=Perl]
+
+%% \end{lstlisting}
+
+%% \item[SciPy] 
+
+%% \link{http://www.math.unl.edu/~sdunbar1/    .py}{Scientific Python script for .}
+
+%% \begin{lstlisting}[language=Python]
+
+%% \end{lstlisting}
+
+\end{description}
+
+
