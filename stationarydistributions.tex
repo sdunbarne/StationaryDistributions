@@ -1,0 +1,1770 @@
+%%% -*-LaTeX-*-
+%%% stationarydistributions.tex.orig
+%%% Prettyprinted by texpretty lex version 0.02 [21-May-2001]
+%%% on Thu Jun  4 05:45:25 2020
+%%% for Steve Dunbar (sdunbar@family-desktop)
+
+\documentclass[12pt]{article}
+
+\input{../../../../etc/macros}
+%% \input{../../../../etc/mzlatex_macros}
+\input{../../../../etc/pdf_macros}
+
+\bibliographystyle{plain}
+
+\begin{document}
+
+\myheader \mytitle
+
+\hr
+
+\sectiontitle{Classes of States and Stationary Distributions}
+
+\hr
+
+\usefirefox
+
+% \hr
+
+% \visual{Study Tip}{../../../../CommonInformation/Lessons/studytip.png}
+% \section*{Study Tip}
+
+\hr
+
+\visual{Rating}{../../../../CommonInformation/Lessons/rating.png}
+\section*{Rating} %one of
+% Everyone: contains no mathematics.
+% Student: contains scenes of mild algebra or calculus that may require guidance.
+% Mathematically Mature:  may contain mathematics beyond calculus with proofs.
+Mathematicians Only: prolonged scenes of intense rigor.
+
+\hr
+
+\visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
+\section*{Section Starter Question}
+
+Randomly distribute three balls between two urns, labeled \( A \) and \(
+B \).  Each period, select an urn at random, and if it is not empty,
+remove a ball from that urn and put it in the other urn.  How can you
+find the fraction of time urn \( A \) is empty?  What is that fraction
+of time?  Does this depend on how the balls are initially distributed
+between the two urns?
+
+\hr
+
+\visual{Key Concepts}{../../../../CommonInformation/Lessons/keyconcepts.png}
+\section*{Key Concepts}
+
+\begin{enumerate}
+    \item
+        The states of a Markov chain partition into equivalence classes
+        according to their type:  communicating, periodic versus
+        aperiodic, recurrent versus transient, or positive recurrent versus null
+        recurrent.
+    \item
+        Every irreducible, aperiodic Markov chain has a unique
+        non-negative solution of
+        \begin{align*}
+            \sum\limits_{i} \pi_{i} P_{ij} &= \pi_{j} \\
+            \sum\limits_{i} \pi_{i} &= 1 \\
+        \end{align*}
+        called a stationary distribution.
+    \item
+        For an irreducible and aperiodic Markov chain,
+        \begin{enumerate}
+            \item
+                \[
+                    \lim_{n \to \infty} (P^{n})_{ii} = \frac{1}{m_i} =
+                    \pi_{ii}
+                \] and
+            \item
+                \[
+                    \lim_{n \to \infty} (P^{n})_{ij} = \lim_{n \to
+                    \infty} (P^ {n})_{ii} =\pi_{ij}.
+                \]
+        \end{enumerate}
+\end{enumerate}
+
+\hr
+
+\visual{Vocabulary}{../../../../CommonInformation/Lessons/vocabulary.png}
+\section*{Vocabulary}
+\begin{enumerate}
+    \item
+        State \( j \) is \defn{accessible} from state \( i \) if \( (P^{n})_
+        {ij} > 0 \) for some \( n \ge 1 \).
+    \item
+        The states of a Markov chain partition into equivalence classes
+        according to their type:  \defn{communicating}, \defn{periodic}
+        versus \defn{aperiodic}, and \defn{recurrent} versus
+        \defn{transient}, \defn{positive recurrent} versus \defn{null recurrent}.
+    \item
+        The Markov chain is \defn{irreducible} if it has only one
+        communicating class.
+    \item
+        Let the random variable \( \tau_{ii} \) be the \defn{return time}
+        to state \( i \) given the chain starts in \( i \):
+        \begin{align*}
+            \tau_{ii} &= \min\setof{n \ge 1}{X_n = i \given X_0 = i}, \\
+            \tau_{ii} &= \infty \text{ if } X_n \ne i, n \ge 1.
+        \end{align*}
+        The distribution of \( \tau_{ii} \) is \( f^n_{ii} \). The \defn
+        {expected return time} \( m_i \) is \( \sum_ {\nu=1}^\infty \nu
+        f^\nu_{ii} \).
+    \item
+        If a state \( i \) is recurrent, then it is \defn{positive
+        recurrent} if, starting in \( i \), the expected time until the
+        process returns to state \( i \) is finite.  Otherwise the state
+        is \defn{null recurrent}.
+    \item
+        Positive recurrent and aperiodic states are \defn{ergodic}.
+    \item
+        When the limit exists, let
+        \[
+            \pi_j = \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n
+            \indicatorrv{X_{\nu}= j \given X_0 = i}
+        \] denote the \defn{long run proportion of time the chain spends
+        in state \( j \)} or just the \emph{long run proportion} for
+        short.
+    \item
+        For a positive recurrent and aperiodic Markov chain the vector \(
+        (\pi_j) \) satisfies the set of the equations
+        \begin{align*}
+            \sum\limits_{i} \pi_{i} P_{ij} &= \pi_{j}\\
+            \sum\limits_{i} \pi_{i} &= 1 \\
+        \end{align*}
+        and is a \defn{stationary probability distribution} of the
+        Markov chain.
+\end{enumerate}
+
+\hr
+
+\section*{Notation}
+\begin{enumerate}
+    \item
+        \( i, j, l \) -- arbitrary or generic state indices
+    \item
+        \( (P^n)_{ij} \) -- the \( i,j \) entry of the \( n \)th power
+        of \( P \).
+      \item  \( d(i) \) -- the period of a state \( i \)
+      \item \( \tau_{ii} \) -- the \defn{return time} to
+    state \( i \) given the chain starts in \( i \)
+      \item \( \tau_{ij} \) -- the time to
+    state \( j \) given the chain starts in \( i \)
+  \item \( f^n_{ii} \) --  the
+    probability that starting from \( i \), the first return to state \(
+    i \) occurs at step \( n \)
+  \item \( f_i = \Prob{\tau_{ii} < \infty} \)
+    -- the probability that starting in \( i \) the process will
+    \emph{ever} reenter state \( i \)
+  \item     \[
+        \pi_j = \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n
+        \indicatorrv{X_{\nu}= j \given X_0 = i}
+    \] -- the \defn{long run proportion of time the chain spends in
+      state \( j \)}
+  \item
+        \( m_i \) -- the \defn{expected return time} \( \sum_{\nu=1}^\infty
+    \nu f^\nu_{ii} \).
+
+\visual{Mathematical Ideas}{../../../../CommonInformation/Lessons/mathematicalideas.png}
+\section*{Mathematical Ideas}
+
+\subsection*{Classification of States and Stationary Distributions}
+
+\begin{definition}
+    State \( j \) is \defn{accessible} from state \( i \) if \( (P^{n})_
+    {ij} > 0 \) for some \( n \ge 1 \).  That is, state \( j \) is
+    accessible from state \( i \) if and only if it is possible that the
+    process will enter state \( j \) in \( n \) steps, for some \( n \).
+\end{definition}
+\index{accessible}
+
+\begin{definition}
+    Two states \defn{communicate} if state \( j \) is accessible from
+    state \( i \) and state \( i \) is accessible from \( j \).
+\end{definition}
+\index{communicate}
+
+\begin{remark}
+    Note that it is possible that \( j \) is accessible from \( i \) but
+    that \( i \) and \( j \) do not communicate.  An example is if \( j \)
+    is an absorbing state accessible from \( i \).
+\end{remark}
+
+\begin{proposition}
+    Communicating is an equivalence relation, so that the states of a
+    Markov chain partition into disjoint communicating classes.
+\end{proposition}
+\index{classes}
+
+\begin{proof}
+    \begin{description}
+        \item[Reflexive:]
+            If \( i \) communicates with itself, then \( i \) is
+            accessible from \( i \) in \( n \) steps, and so \( i \) is
+            accessible from itself again in \( n \) steps, so
+            communication is reflexive.
+        \item[Symmetric:]
+            If \( i \) and \( j \) communicate, then state \( j \) is
+            accessible from state \( i \) in \( n_{ij} \) steps and
+            state \( i \) is accessible from state \( j \) in \( n_{ji} \)
+            steps.  Therefore, state \( i \) is accessible from state \(
+            j \) in \( n_{ji} \) steps and state \( j \) is accessible
+            from state \( i \) in \( n_{ij} \) steps.  That is,
+            communication between \( i \) and \( j \) is a symmetric
+            relation.
+        \item[Transitive:]
+            If \( i \) communicates with \( j \) and \( j \)
+            communicates with \( l \), then \( (P^{n_{ij}})_{ij} > 0 \)
+            for some \( n_{ij} \ge 1 \), and likewise \( (P^{n_{jl}})_{jl}
+            > 0 \) for some \( n_{jl} \ge 1 \).  Then \( (P^{n_{ij}+n_{jl}})_
+            {il} > (P^{n_{ij}})_{ij}(P^{n_{jl}})_{jl} >0 \) and so it
+            is possible that the process can enter state \( l \) from \(
+            i \) in \( n = n_{ij} + n_{jl} \) steps, so \( l \) is
+            accessible from \( i \).  Likewise, \( (P^{n_{lj}})_{lj} > 0
+            \) for some \( n_{lj} \ge 1 \), and \( (P^{n_{ji}})_{ji} > 0
+            \) for some \( n_{ji} \ge 1 \).  Then \( (P^{n_{lj}})_{lj} (P^
+            {n_{ji}})_{ji} >0 \) and so it is possible that the process
+            can enter state \( j \) in \( n = n_{lj} + n_{ji} \) steps,
+            so \( i \) is accessible from \( l \). That is, \( i \) and \(
+            l \) communicate and communication is transitive.
+    \end{description}
+\end{proof}
+
+\begin{definition}
+    The period of a state \( i \), written as \( d(i) \), is the
+    greatest common divisor of all integers \( n \ge 1 \) for which \( (P^n)_
+    {ii} > 0 \).  If \( (P^{n})_{ii} = 0 \) for all \( n \), define \( d
+    (i) = 0 \).
+\end{definition}
+\index{period}
+
+\begin{proposition}
+  \label{prop:stationarydistributions:communicating}
+    \begin{enumerate}
+        \item
+            If \( i \) communicates with \( j \), then \( d(i) = d(j) \).
+        \item
+            If state \( i \) has period \( d(i) \), then there exists an
+            integer \( N \) depending on \( i \) such that for all
+            integers \( n \ge N \), \( (P^{n d(i)})_{ii} > 0 \).  That
+            is, return to state \( i \) can occur at all sufficiently
+            large multiples of the period \( d(i) \).
+        \item
+            If \( (P^m)_{ij} >0 \), then \( (P^{m + nd(i)})_{ij} > 0 \)
+            for all sufficiently large \( n \).
+    \end{enumerate}
+\end{proposition}
+
+\begin{remark}
+    The proofs of the second and third parts rely on the next lemma from
+    number theory, a generalization of a standard result about the
+    greatest common divisor of two integers.
+\end{remark}
+
+\begin{lemma}
+    \label{lem:stationarydistributions:numtheory} Let \( n_1, n_{2},
+    \dots, n_s \) be positive integers with greatest common divisor \( d
+    \).  Then there exists a positive integer \( M \) such that if \( m
+    \ge M \) then there exist nonnegative integers \( c_1, c_2, \dots, c_s
+    \) such that
+    \[
+        md = \sum\limits_{\nu=1}^s c_\nu n_\nu.
+    \]
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Let
+            \[
+              A = \setof{n}{n=c_1n_1 + \cdots + c_s n_s, c_s
+                \text{ positive integers}}
+            \] and
+            \[
+                B = \setof{b_1 m_1 + \cdots + b_j m_j}{ m_i \in A , b_i
+                \in \Integers, j \ge 1, i=1,\dots, j}.
+            \]
+        \item
+            Let \( d' \) be the least \emph{positive} integer in \( B \), where
+            \( d' = b_1 m'_1 + \cdots + b_j m'_j \).  Since \( m'_i \in
+            A \) for all \( i \), each can be written as \( m'_i = c'_{1i}n_1
+            + \cdots + c'_{si}n_s \).
+        \item
+            The first claim is that \( d' \) is a common divisor of all
+            elements of \( A \).  To prove the claim, let \( a = c_1 n_1
+            + \cdots + c_s n_s \in A \).  By the Division Algorithm let \(
+            a = d'q + r \) with \( 0 \le r < d' \).  Then
+            \begin{align*}
+                r &= a - d' q \\
+                &= a - q (b_1 m'_1 + \cdots + b_j m'_j) \\
+                &= (c_1 n_1 + \cdots + c_s n_s) - q \left(\sum\limits_{i=1}^j
+                b_i\sum\limits_{\nu=1}^s c'_{\nu i} n_{\nu} \right) \\
+                &= \left( c_1 - q \sum\limits_{i=1}^j b_i c'_{1 i}
+                \right) n_1 + \cdots + \left( c_s - q \sum\limits_{i=1}^j
+                b_i c'_{s i} \right) n_s.
+            \end{align*}
+        \item
+            This means that \( r \in B \) (with \(m_i = 1 \cdot n_i
+            \in A \) and \(b_i = \left( c_i - q \sum\limits_{\nu=1}^j b_\nu c'_{i \nu}
+                \right) \)).  Since \( 0 \le r < d' \),
+            and \( d' \) is the least \emph{positive} integer in \( B \), then \(
+            r = 0 \) and \( d' \) is a divisor of \( a \), establishing
+            the first claim.
+        \item
+          For simplicity drop the prime on \( d' \) so
+          \( d' = d = \gcd(n_1, \dots, n_s) \).  As in the previous step,
+            rearrange the terms in the representation of \( d = b'_1 m_1
+            + \cdots + b'_j m_j = \alpha_1 n_1 + \cdots + \alpha_s n_s \) so that
+            the terms with positive coefficients are written first.
+            Thus \( d' = N_1 - N_2 \) with \( N_1 \in A \) and \( N_2 \in
+            A \). Let \( M \) be the positive integer \( N_2^2/d \) (
+            a positive integer since \( d' \) is a divisor of
+            \(N_{2}\in A\)).
+            Every integer \( m \ge M \) can be written as \( m = M + K =
+            N_2^2/d + K \), with \( K \ge 0 \).  Using the Division
+            Algorithm \( K = q' (N_2/d) + r' \) with \( 0 \le r' < N_2/d \)
+            and the integer \( q' = \lfloor K/(N_2/d) \rfloor \).  Now
+            \begin{align*}
+              md &= (N_2^2/d + q' N_2/d + r') d \\
+                 &= N_2^2 + q'N_2 + r'd \\
+                 &= N_2^2 + q'N_2 + r'(N_1 - N_2) \\
+                 &= N_2(N_2 + q' -r') + r' N_1.
+            \end{align*}
+            Recall that \( r' < N_2/d \), so \( r' \le N_2 \).
+        \item
+            Since \( N_2 \in A \) and \( N_1 \in A \), the previous
+            step shows there exist
+            nonnegative integers \( c_1, c_2, \dots, c_s \) such that
+            \[
+              md = \sum\limits_{\nu=1}^s c_\nu n_\nu.
+            \]
+    \end{enumerate}
+\end{proof}
+
+\begin{proof}[of Propostion \ref{prop:stationarydistributions:communicating}]
+    \begin{enumerate}
+        \item
+            \begin{enumerate}
+                \item
+                    If \( i \) communicates with \( j \), then \( (P^{n_
+                    {ij}})_{ij} > 0 \) for some \( n_{ij} \ge 1 \) and \(
+                    (P^{n_{ji}})_{ji} > 0 \) for some \( n_{ji} \ge 1 \).
+                    Additionally since \( i \) and \( j \) communicate, \(
+                    (P^{n_{ii}})_{n_{ii}} > 0 \) for some \( n_{ii} \).
+                \item
+                    Then
+                    \[
+                        (P^{n_{ji} + n_{ii} + n_{ij}})_{jj} \ge (P^{n_{ji}})_
+                        {ji} \cdot (P^{n_{ii}})_{jj} \cdot (P^{n_{ij}})_
+                        {ij} > 0.
+                    \] Furthermore, \( (P^{2n_{ii}})_{ii} > 0 \), so
+                    \[
+                        (P^{n_{ji} + 2n_{ii} + n_{ij}})_{jj} \ge (P^{n_{ji}})_
+                        {ji} \cdot (P^{2n_{ii}})_{ii} \cdot (P^{n_{ij}})_
+                        {ij} > 0.
+                    \]
+                \item
+                    This means that \( d(j) \) divides \( n_{ji} + n_{ii}
+                    + n_{ij} \) and \( d(j) \) divides \( n_{ji} + 2n_{ii}
+                    + n_{ij} \) so \( d(j) \) divides the difference \(
+                    n_{ii} \).
+                \item
+                    Now \( d(j) \) is a divisor of \( n_{ii} \) and \( d
+                    (i) = \gcd(n_{ii}) \) so \( d(j) \le d(i) \) and \(
+                    d(i) \le d(j) \)
+            \end{enumerate}
+        \item
+            \begin{enumerate}
+                \item
+                    For state \( i \), let its equivalence class of
+                    communicating states be labeled \( 1, \dots, k \).
+                    For each state \( j \), \( 1 \le j \le k \), there
+                    is an \( m_{ij} \) such that \( (P^{m_{ij}})_{ij} >
+                    0 \) and an \( m_{ji} \) such that \( (P^{m_{ji}})_{ji}
+                    > 0 \).
+                \item
+                    Let \( n_j = m_{ij} + m_{ji} \).  Then
+                    \[
+                        (P^{n_j})_{ii} = (P^{m_{ij} + m_{ji}})_{ii} \ge
+                        (P^{m_{ij}})_{ij } (P^{m_{ji}})_{ji} > 0.
+                    \] That is, the probability of a return to \( i \)
+                    from \( i \) in \( n_j \) steps is at least as great
+                    as the probability of an excursion from \( i \) to \(
+                    j \) in \( m_{ij} \) steps with return to \( i \)
+                    from \( j \) in \( m_{ji} \) steps.
+                \item
+                    Next note that if \( (P^{n_j})_{ii} > 0 \) implies
+                    that for any positive integer \( c_j \), \( (P^{c_j
+                    n_j})_ {ii} > 0 \), that is, the probability of \( c_j
+                    \) sequential returns is still positive.
+
+                    Should assert here that \( d(i) \) is the \( \gcd(n_1,
+                    \dots, n_k) \).  (Note:  Certainly by the previous, \(
+                    d(i) \) is a divisor, but is it the greatest?)
+                \item
+                    By the number theoretic Lemma~%
+                    \ref{lem:stationarydistributions:numtheory}, there
+                    exists \( N \) and positive integers \( c_1, \dots,
+                    c_k \) such that if \( n \ge N \)
+                    \[
+                        (P^{n d(i)})_{ii} = (P^{c_1 n_1 + \dots + c_k n_k})_
+                        {ii} \ge (P^{c_1 n_1})_{ii} \cdot \dots \cdot (P^
+                        {c_k n_k})_{ii} >0.
+                    \]
+            \end{enumerate}
+          \item
+            So
+            \[
+                (P^{m + n d(i)})_{ji} \ge (P^{n d(i)})_{ii} (P^m)_{ji}.
+            \] That is, the probability of an excursion to \( j \) from \(
+            i \) in \( m + n d(i) \) steps is at least as great as the
+            probability of an excursion from \( i \) to \( i \) in \( n
+            d(i) \) steps followed by moving to \( j \) from \( i \) in \(
+            m \) steps.  By the previous part of the lemma, there is an \(
+            N \) such that for \( n \ge N \), \( (P^{n d(i)})_{ii} > 0 \)
+            and so \( (P^{m + n d(i)})_{ji} >0 \) for sufficiently large
+            \( n \).
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    The Markov chain is \defn{irreducible} if it has only one
+    communicating class.
+\end{definition}
+\index{irreducible}
+
+\begin{definition}
+    A Markov chain in which each state has period \( 1 \) is \defn{aperiodic}.
+\end{definition}
+\index{aperiodic}
+
+\begin{definition}
+    Let the random variable \( \tau_{ii} \) be the \defn{return time} to
+    state \( i \) given the chain starts in \( i \):
+    \begin{align*}
+        \tau_{ii} &= \min\setof{n \ge 1}{X_n = i \given X_0 = i} \\
+        \tau_{ii} &= \infty \text{ if } X_n \ne i, n \ge 1.
+    \end{align*}
+\end{definition}
+\index{return time}
+
+\begin{definition}
+    Let the distribution of \( \tau_{ii} \) be \( f^n_{ii} \), be the
+    probability that starting from \( i \), the first return to state \(
+    i \) occurs at step \( n \).  That is, for each \( n \ge 1 \),
+    \[
+        f^n_{ii} = \Prob{X_n = i, X_\nu \ne i, \nu =1,2,\dots,n-1 \given
+        X_0 = i}.
+    \] Note that \( f^1_{ii} = P_{ii} \) and recursively \( f^n_{ii} =
+    \sum_{\nu=0}^n f^{\nu}_{ii} P^{\nu-k}_{ii} \).
+\end{definition}
+
+\begin{definition}
+    The \defn{expected return time} is \( \E{\tau_{ii}} = m_i = \sum_{\nu=0}^
+    {\infty} \nu f^\nu_{ii} \).
+\end{definition}
+
+\begin{definition}
+    For any state \( i \), let \( f_i = \Prob{\tau_{ii} < \infty} \)
+    denote the probability that starting in \( i \) the process will
+    \emph{ever} reenter state \( i \). State \( i \) is \defn{recurrent}
+    if \( f_i = 1 \) and \defn{transient} if \( f_{i} < 1 \).
+\end{definition}
+\index{recurrent}
+\index{transient}
+
+\begin{remark}
+    Note that the qualities of recurrence and transience are
+    complementary, a state is one or the other, there are no other
+    possibilities. If the state \( i \) is transient, \( f_i < 1 \),
+    then \( i \) will be visited a finite random number of times.
+    Starting from \( i \) the number of visits \( N_i \) (counting the
+    starting visit) to transient state \( i \) has a geometric
+    distribution
+    \[
+        \Prob{N_i = n} = f_i^{n-1}(1 - f_i), n \ge 1.
+    \] This observation depends on the Strong Markov property, once the
+    chain visits state \( i \), the future is independent of the past
+    and the chain starts over again with the same distribution.  In
+    fact, the expected number of visits is \( \E{N_i} = 1/(1 - f_i) \).
+\end{remark}
+
+\begin{proposition}
+    If state \( i \) is recurrent, then the process will reenter \( i \)
+    infinitely often.
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Suppose that the process starts in state \( i \) and \( i \)
+            is recurrent, so that with probability \( 1 \) the process
+            will eventually reenter state \( i \).
+        \item
+            However, by the definition of a Markov chain, it follows
+            that the process will be starting over again when it
+            reenters state \( i \), and therefore state \( i \) will
+            eventually be visited again.
+        \item
+            By induction, starting in state \( i \) will reenter state \(
+            i \) any number of times, that is, infinitely often.
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+    \begin{enumerate}
+        \item
+            State \( i \) is recurrent if
+            \[
+                \sum\limits_{\nu=1}^{\infty} (P^{\nu})_{ii} = \infty.
+            \]
+        \item
+            State \( i \) is transient if
+            \[
+                \sum\limits_{\nu=1}^{\infty} (P^\nu)_{ii} < \infty.
+            \]
+    \end{enumerate}
+\end{proposition}
+\index{recurrent}
+\index{transient}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            The two statements are complementary and equivalent so it
+            suffices to prove the statement for transience.
+        \item
+            Suppose that state \( i \) is transient, so by definition \(
+            f_i <1 \).  Let \( N_i \) count the total number of returns
+            to \( i \).
+        \item
+            Write \( N_i \) in terms of indicator variables as
+            \[
+                N_i = \sum\limits_{\nu=1}^{\infty} \indicatorrv{X_\nu=i}.
+            \]
+        \item
+            The distribution of \( N_i \) is geometric with parameter \(
+            f_i \) so
+            \[
+                \E{N_i \given X_0 = i} = \frac{f_i}{1 - f_i}.
+            \] Then
+            \[
+                \infty > \E{N_i \given X_0 = i} = \E{ \sum\limits_{n=1}^
+                {\infty} \indicatorrv{X_n=i \given X_0=i}} = \sum\limits_
+                {n=1}^{\infty} (P^n)_{ii}.
+            \]
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    \label{cor:stationarydistributions:allrecurrent}
+    \begin{enumerate}
+        \item
+            For any communication class \( C \) of a Markov chain, all
+            states in \( C \) are either recurrent or all states in \( C
+            \) are transient.  That is
+            \begin{itemize}
+                \item
+                    if \( i \) and \( j \) communicate, and \( i \) is
+                    recurrent, then so is \( j \)
+                \item
+                    if \( i \) and \( j \) communicate, and \( i \) is
+                    transient, then so is \( j \).
+            \end{itemize}
+        \item
+            For an irreducible Markov chain, either all states are
+            recurrent or all states are transient.
+    \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+    Left as an exercise.
+\end{proof}
+
+\begin{definition}
+    A state \( i \) is \defn{positive recurrent} if it is recurrent and
+    starting in \( i \), the expected time until the process returns to
+    state \( i \) is finite.  Otherwise the state is \defn{null
+    recurrent}.
+\end{definition}
+\index{positive recurrent}
+\index{null recurrent}
+
+\begin{proposition}
+    Suppose states \( i,j \) are both recurrent.  If \( i \) and \( j \)
+    communicate and if \( j \) is positive recurrent, \( \E{\tau_{jj}} <
+    \infty \), then \( i \) is positive recurrent and furthermore \( \E{\tau_
+    {ij}} < \infty \).  In particular, all states in a recurrent
+    communicating class are either all together positive recurrent or
+    all together null recurrent.
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Assume \( \E{\tau_{jj}} < \infty \) and \( i \) and \( j \)
+            communicate.
+        \item
+            Choose the smallest \( n \ge 1 \) such that \( (P^n)_{ji} >
+            0 \).
+        \item
+            \label{enum:stationarydistributions:defA} With \( x_0 = j \), let \( A = \set{x_l \ne j,
+            1 \le l < n, x_n = i} \) be the path of states visited
+            to \( i \).  Note that \( \Prob{A} > 0 \).
+        \item
+            Then \( \E{\tau_{jj}} \ge \E{\tau_{jj} \given A} \cdot \Prob
+            {A} = (n + \E{\tau_{ij}}) \cdot \Prob{A} \).  Hence \( \E{\tau_
+            {ij}} < \infty \).
+        \item
+            With \( x_0 = j \), let \( \setof{Y_m}{m \ge 1} \) be the
+            interarrival time between visits to state \( j \).  The
+            distribution of \( Y_m \) is the same as the distribution of
+            \( \tau_{jj} \).  The \( n \)th revisit of the chain to
+            state \( j \) is at time \( t_n = Y_1 + \cdots + Y_n \) with
+            \( \E{Y_{l}} = \E{\tau_{jj}} < \infty \).
+        \item
+            Let \( p \) be the probability the chain visits state \( i \)
+            before returning to state \( j \), given that the chain
+            started in \( j \).  Then \( p \ge \Prob{A} > 0 \) where \(
+            A \) is defined in step~%
+            \ref{enum:stationarydistributions:defA}.
+        \item
+            Every time the chain revisits state \( j \), there is,
+            independent of the past, this probability \( p \) that the
+            chain will visit state \( i \) before revisiting state \( j \)
+            again.  Letting \( N \) denote the number of revisits the
+            chain makes to state \( j \) until first visiting state \( i
+            \), \( N \) has geometric distribution with ``success''
+            probability \( p \) and so \( \E{N} < \infty \).
+        \item
+            \( N \) is a stopping time with respect to the \( \set{Y_m} \)
+            and
+            \[
+                \tau_{ji} \le \sum\limits_{m=1}^N Y_m
+            \] and so by Wald's equation \( \E{\tau_{ji}} \le \E{N}
+            \cdot \E{Y} < \infty \).
+        \item
+            Finally, \( \E{\tau_{ii}} \le \E{\tau_{ij}} + \E{\tau_{ji}}
+            < \infty \).
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+    In an irreducible finite-state Markov chain all recurrent states are
+    positive recurrent and has a stationary distribution satisfying \(
+    \pi = P \pi \).
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            If the state space is finite, then not \emph{all} states can
+            be transient.  Otherwise, after a finite number of steps,
+            the chain would leave every state never to return, clearly
+            an impossibility.  That is, all the communicating states are
+            recurrent.
+        \item
+            Now show that state \( i \) can't be null recurrent, that
+            is, it must be positive recurrent.
+        \item
+            For any fixed \( m \ge 1 \), the rows of \( P^m \) must sum
+            to \( 1 \).  That is, for any \( i \in \mathcal{X} \)
+            \[
+                \sum\limits_{j \in \mathcal{X}} (P^m)_{ij} = 1.
+            \]
+        \item
+            If the state is null recurrent, then for any \( j \in
+            \mathcal{X} \).
+            \[
+                \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n (P^\nu)_
+                {ij} = 0.
+            \]
+        \item
+            Summing over \( j \)
+            \[
+                \sum\limits_{j \in \mathcal{X}} \lim_{n \to \infty}
+                \frac{1}{n} \sum\limits_{\nu=1}^{n} (P^\nu)_{ij} = 0.
+            \]
+        \item
+            Since the state space is finite, interchange the outer sum
+            and the limit.
+            \[
+                \lim_{n \to \infty} \sum\limits_{j \in \mathcal{X}}
+                \frac{1}{n} \sum\limits_{\nu=1}^{n} (P^\nu)_{ij} = 0.
+            \]
+        \item
+            Interchange the order of summation,
+            \[
+                \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^{n}
+                \sum\limits_{j \in \mathcal{X}} (P^\nu)_{ij} = 0.
+            \] 
+          \item But
+            \[
+              \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^{n}
+                \sum\limits_{j \in \mathcal{X}} (P^\nu)_{ij} = \lim_{n
+                  \to \infty} \frac{1}{n}\lim_{n \to \infty}
+                \frac{1}{n} \sum\limits_{\nu=1}^{n}
+                \sum\limits_{j \in \mathcal{X}} (P^\nu)_{ij}
+                \sum\limits_{\nu=1}^{n} 1 =
+                \lim_{n \to \infty} \frac{1}{n} \cdot n = 1,
+              \] a contradiction.
+        \item
+            Thus, the state must be positive recurrent.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Positive recurrent and aperiodic states are \defn{ergodic}.
+\end{definition}
+\index{ergodic}
+
+\begin{remark}
+    Make the notation convention that \( (P^{0})_{ii} = 1 \).  Also
+    recall the definition of the expected return time \( m_i = \sum_ {\nu=0}^
+    {\infty} \nu f^\nu_{ii} \).
+\end{remark}
+
+\begin{definition}
+    When the limit exists, let
+    \[
+        \pi_j = \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n
+        \indicatorrv{X_{\nu}= j \given X_0 = i}
+    \] denote the \defn{long run proportion of time the chain spends in
+    state \( j \)} or just the \emph{long run proportion} for short.
+    Note that the right side appears to depend on the starting state \(
+    i \), but the theorems below show that the long run proportion is
+    independent of \( i \).
+\end{definition}
+\index{long run proportion}
+
+\begin{remark}
+    Taking expected values,
+    \[
+        \E{\indicatorrv{X_m = j \given X_0 = i}} = \Prob{X_m = j \given
+        X_0 = i} = (P^m)_{ij}
+    \] so the long run proportion is alternatively defined as
+    \[
+        \pi_j = \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n (P^
+        {\nu})_ {ij}
+    \] using the Bounded Convergence Theorem (explain how!).
+\end{remark}
+
+\begin{remark}
+    Recalling that \( (P^{\nu})_{ij} \) is the \( i,j \) component of
+    the matrix \( P^{\nu} \) and using the independence on \( i \), the
+    long run proportions in matrix form are
+    \[
+        \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n P^{\nu} =
+        \begin{pmatrix}
+            \pi_1 & \pi_2 & \ldots & \pi_k \\
+            \pi_1 & \pi_2 & \ldots & \pi_k \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \pi_1 & \pi_2 & \ldots & \pi_k \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \pi \\
+            \pi \\
+            \vdots \\
+            \pi
+        \end{pmatrix}
+        .
+    \]
+\end{remark}
+
+\begin{remark}
+    Observing the Markov chain at a time far in the future, \( \pi_j \)
+    is the probability the chain is in state \( j \).  To see this:  Let
+    \( N \) be a random observation time, with uniform distribution over
+    the integers \( \set{1, 2, \dots, n} \), independent of the chain.
+    Then conditioning on \( N \)
+    \[
+        \Prob{X_N = j} = \sum\limits_{\nu=1}^n \Prob{X_{\nu} = j \given
+        X_0 = i} \Prob{N = m} = \frac{1}{n} \sum\limits_{\nu=1}^n (P^{\nu})_
+        {ij} \approx \pi_j.
+    \]
+\end{remark}
+
+\begin{definition}
+    The \defn{expected return time} \( m_i \) is \( \sum_{\nu=1}^\infty
+    \nu f^\nu_{ii} \).
+\end{definition}
+
+\begin{theorem}[Limit Theorem for Markov Chain Powers]
+    For an irreducible, positive recurrent and aperiodic Markov chain,
+    \begin{enumerate}
+        \item
+            \[
+                \lim_{n \to \infty} (P^{n})_{ii} = \frac{1}{m_i},
+            \] and
+        \item
+            \[
+                \lim_{n \to \infty} (P^{n})_{ij} = \lim_{n \to \infty} (P^
+                {n})_{ii}.
+            \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Start with the recursion relation
+            \[
+                (P^n)_{ji} = \sum\limits_{\nu=0}^n f^{\nu}_{ji} (P^{n-\nu})_
+                {ii}
+            \] for \( i \ne j \) and \( n \ge 0 \).
+          \item Change the order of summation
+            \[
+                (P^n)_{ji} = \sum\limits_{\nu=0}^n f^{n-\nu}_{ji} (P^{\nu})_
+                {ii}
+            \] for \( i \ne j \) and \( n \ge 0 \).
+        \item
+            More generally, consider the convolution type relation
+            \[
+                y_n = \sum\limits_{\nu=0}^n a_{n-\nu} x_{\nu}
+            \] where \( a_m \ge 0 \), \( \sum_{\nu=0}^{\infty} a_\nu = 1
+            \), and \( \lim_{\nu \to \infty} x_\nu = c \).  The goal is
+            to prove that \( \lim_{\nu \to \infty} y_\nu = c \).
+        \item
+            Taking the difference with \( c \) and break into sums
+            from \( 0 \) to \( n \) and \( n+1 \) to \( \infty \)
+            \[
+                y_n - c = \sum\limits_{\nu=0}^n a_{n-\nu} x_\nu -c \sum\limits_
+                {\nu=0}^{\infty} a_n = \sum\limits_{\nu=0}^n a_{n-\nu} (x_k
+                -c) - c \sum\limits_{\nu=n+1}^{\infty} a_\nu.
+            \]
+        \item
+            Let \( \epsilon > 0 \) be given and determine \( N(\epsilon)
+            \) so that\( \abs{x_{\nu} - c} < \epsilon/3 \) for \( \nu
+            \ge N(\epsilon) \).  For \( \nu \ge N(\epsilon) \)
+            \[
+                y_n - c = \sum\limits_{\nu=0}^{N(\epsilon)} a_{n-\nu} (x_k
+                -c) + \sum\limits_{\nu=N(\epsilon)+1}^n a_{n-\nu} (x_k
+                -c)- c \sum\limits_{\nu=n+1}^{\infty} a_\nu.
+            \] Then
+            \[
+                \abs{y_n - c} \le M \sum\limits_{\nu=0}^{N(\epsilon)} a_
+                {n-\nu} + \frac{\epsilon}{3} \sum\limits_{\nu=N(\epsilon)+1}^n
+                a_{n-\nu} + \abs{c} \sum\limits_{\nu=n+1}^{\infty} a_\nu.
+            \]
+        \item
+            Choose \( N(\epsilon) \) so that \( \abs{c} \sum_{\nu=n+1}^
+            {\infty} a_\nu \le \epsilon/3 \) and
+            \[
+                \sum\limits_{\nu=0}^{N(\epsilon)} a_{n-\nu} = \sum\limits_
+                {\nu=n-N (\epsilon)}^n a_{\nu} \le \frac{\epsilon}{3M}
+            \] for \( n \ge N(\epsilon) \).
+        \item
+            Summarizing, for \( n \ge N(\epsilon) \), \( \abs{y-c} \le
+            \epsilon/3 + \epsilon/3 + \epsilon/3 = \epsilon \).
+        \item
+            Applying this to \( y_n = (P^n)_{ji} \), \( a_n = f^n_{ji} \),
+            \( x_n = (P^n)_{ii} \) gives the final result.
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    This proof is a purely analytic result with the probabilistic
+    application due to the assumption that \( \sum_{\nu=0}^{\infty} a_\nu
+    = 1 \).
+\end{remark}
+
+\begin{lemma}
+    If \( a_n \to a \) as \( n \to \infty \), then
+    \[
+        \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^{n} a_{\nu}
+        = a,
+    \] so that if \( a_n \) converges to \( a \), the sequence of
+    averages converges to \( a \).
+\end{lemma}
+
+\begin{proof}
+    Left as an exercise.
+\end{proof}
+
+\begin{corollary}
+    \[
+        \lim_{n \to \infty} (P^{n})_{ii} = \frac{1}{\sum\limits_{\nu=0}^
+        {\infty} \nu f^{\nu}_{ii}} = \frac{1}{m_i},
+    \]
+\end{corollary}
+
+\begin{theorem}[Fundamental Theorem of Markov Chains]
+    For an irreducible, positive recurrent and aperiodic Markov chain \(
+    \lim_{n \to \infty} (P^n)_{ij} \) exists and is independent of \( i \).
+    Furthermore, letting
+    \[
+        \pi_j = \lim_{n \to \infty} (P^n)_{ij}
+    \] then \( \pi_j \) is the unique non-negative solution of
+    \begin{align}
+        \sum\limits_{i} \pi_{i} P_{ij} &= \pi_{j},%
+        \label{eq:stationarydistributions:FTMC1}\\
+        \sum\limits_{i} \pi_{i} &= 1.%
+        \label{eq:stationarydistributions:FTMC2}
+    \end{align}
+\end{theorem}
+\index{Fundamental Theorem of Markov Chains}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            For every \( n \) and \( M \), \( 1 = \sum_{j=0}^{\infty} (P^n)_
+            {ij} \ge \sum_{j=0}^M (P^n)_{ij} \).
+        \item
+            Letting \( n \to \infty \), the limit exists, and using the
+            Limit Theorem for Markov Chain Powers, \( 1 \ge \sum_{j=0}^{M}
+            \pi_j \) for every \( M \).  Thus, \( 1 \ge \sum_{j=0}^{\infty}
+            \pi_j \).
+        \item
+            Now \( (P^{n+1})_{ij} \ge \sum_{\nu=0}^M (P^n)_{i \nu}P_{\nu
+            j} \).  Again let \( n \to \infty \) to obtain
+            \[
+                \pi_j \ge \sum\limits_{\nu=0}^M \pi_{\nu} P_{\nu j}.
+            \]
+        \item
+            Since the left side is independent of \( M \), let \( M \to
+            \infty \) giving
+            \[
+                \pi_j \ge \sum\limits_{\nu=0}^\infty \pi_\nu P_{\nu j}.
+            \]
+        \item
+            Multiply by \( P_{ji} \), sum on \( j \)
+            \[
+                \pi_i \ge \sum\limits_{\nu=0}^\infty \pi_{\nu} (P^2)_{\nu
+                i}
+            \] and then by induction and renaming the state index from
+            \( i \) back to \( j \)
+            \[
+                \pi_j \ge \sum\limits_{\nu=0}^\infty \pi_\nu (P^n)_{\nu
+                j}.
+            \]
+        \item
+            In the previous inequality, suppose strict inequality holds
+            for some \( j \), then add over \( j \)
+            \[
+                \sum\limits_{j=0}^{\infty} \pi_j > \sum\limits_{j=0}^{\infty}
+                \sum\limits_{\nu=0}^{\infty} \pi_{\nu} (P^n)_{\nu j} =
+                \sum\limits_ {\nu=0}^{\infty} \pi_\nu \sum\limits_{j=0}^
+                {\infty}(P^n)_{\nu j} = \sum\limits_{j=0}^{\infty} \pi_j
+            \] which is a contradiction.  Thus
+            \[
+                \pi_j = \sum\limits_{\nu=0}^\infty \pi_\nu (P^n)_{\nu j}.
+            \]
+        \item
+            Let \( n \to \infty \), and use that \( \sum \pi_{\nu} \)
+            converges and \( (P^n)_{\nu j} \) is uniformly bounded to
+            conclude
+            \[
+                \pi_j = \sum\limits_{\nu=0}^{\infty} \pi_\nu \lim_{\nu
+                \to \infty} (P^n)_{vj} = \pi_j \sum\limits_{\nu=0}^{\infty}
+                \pi_{\nu}
+            \] for every \( j \).  Thus \( \sum\limits_{\nu=0}^{\infty}
+            \pi_{\nu} = 1 \) since \( \pi_j > 0 \) by positive
+            recurrence.
+        \item
+            Now suppose \( x = \{x_n\} \) satisfies the stationary
+            distribution relations.  Then as before
+            \[
+                x_j \ge \sum\limits_{\nu=0}^\infty x_\nu (P^n)_{\nu j}.
+            \] Let \( n \to \infty \) as before to see that
+            \[
+                x_j = \sum\limits_{\nu =0}^{\infty} x_{\nu} (P^n)_{\nu j}
+                = \pi_k \sum\limits_{\nu=0}^{\infty} x_j = \pi_k.
+            \]
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Any vector \( (\pi_j) \) satisfying equations~%
+    \ref{eq:stationarydistributions:FTMC1} and~%
+    \ref{eq:stationarydistributions:FTMC2} is a \defn{stationary
+    probability distribution} of the Markov chain.  A Markov chain
+    started according to a stationary distribution \( (\pi_j) \) will
+    have this distribution for all future times.
+\end{definition}
+\index{stationary probability distribution}
+
+\begin{remark}
+    A limiting distribution is always a stationary distribution, but the
+    converse is not true.  A Markov chain may have a stationary
+    distribution but no limiting distribution.  For example, the
+    periodic Markov chain whose transition probability matrix is
+    \[
+        P =
+        \begin{pmatrix}
+            0 & 1 \\
+            1 & 0
+        \end{pmatrix}
+    \] has no limiting distribution but \( \pi = (1/2, 1/2) \) is a
+    stationary distribution.  Notice that this Markov chain is not
+    aperiodic so it fails to satisfy the requirements of the
+    Fundamental Theorem.
+    \index{stationary probability distribution}
+\end{remark}
+
+\begin{remark}
+    The Fundamental Theorem says that a probability transition matrix for
+    an irreducible ergodic Markov chain has a \emph{left} eigenvector
+    with corresponding eigenvalue \( 1 \).  This is a special case of
+    the more general Perron-Frobenius Theorem.
+\end{remark}
+
+\begin{remark}
+    The Fundamental Theorem says that under appropriate conditions, the
+    powers of the probability transition matrix converge to the
+    stationary distribution but gives no information about the rate of
+    convergence.  The following theorem gives a first indication about
+    the rate of convergence.
+\end{remark}
+\index{convergence rate}
+
+\begin{theorem}[Convergence Theorem by Total Variation]
+    Suppose that \( P \) is the transition probability matrix for an
+    irreducible and aperiodic Markov chain with stationary distribution \(
+    \pi \).  Then there exist constants \( \alpha \in (0,1) \) and \( C
+    > 0 \) such that
+    \[
+        \max_{x \in \mathcal{X}} \| (P^n)_{i \cdot} - \pi \|_{TV} \le C
+        \alpha^n.
+    \]
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item
+            Since \( P \) is irreducible and aperiodic, there exist \( r
+            \) such that \( P^r \) has strictly positive entries.
+        \item
+            Let \( \Pi \) be the matrix with \( \mathcal{X} \) rows,
+            each of which is the row vector \( \pi \).
+        \item
+            For sufficiently small \( \delta > 0 \), \( (P^r)_{ij} \ge
+            \delta \pi_{j} \) for \( i,j \in \mathcal{X} \).
+        \item
+            Let \( \theta = 1-\delta \).  Define stochastic matrix \( Q \)
+            by
+            \[
+                P^r = (1 - \theta)\Pi + \theta Q.
+            \]
+        \item
+            Note that \( M \Pi = \Pi \) for any stochastic matrix and \(
+            \Pi M =\Pi \) for any matrix with \( \pi M = \pi \).
+        \item
+            Claim:
+            \[
+                P^{rk} = (1- \theta^{k})\Pi + \theta^k Q^k.
+            \] Proof by Induction:  For \( k=1 \), this is the
+            definition of \( Q \).  Assume the claim is true for \( k=n \).
+            \begin{align*}
+                P^{r(k+1)} &= P^{rn} P^r = [(1-\theta^n)\Pi + \theta^n Q^n]P^r
+                \\
+                &= (1-\theta^n)\Pi P^r + (1-\theta) \theta^n Q^n \Pi +
+                \theta^{n+1} Q^n Q
+            \end{align*}
+            Use \( \Pi P^r = \Pi \) and \( Q^n \Pi = \Pi \).
+            \[
+                P^{r(k+1)} = (1- \theta^{k+1})\Pi + \theta^{k+1} Q^{k+1}.
+            \] Hence the relation holds for all \( k \).
+        \item
+            Multiply by \( P^j \), and rearrange to obtain
+            \[
+                P^{rk+j} - \Pi = \theta^k (Q^k P^j - \Pi).
+            \]
+        \item
+            Sum the absolute value of row \( x_0 \) on both sides and
+            divide by \( 2 \).  On the right, the absolute row \( x_0 \)
+            sum from \( (Q^k P^j - \Pi) \) is at most the largest
+            possible total variation distance between distributions (which
+            is at most \( 1 \)).  Hence
+            \[
+                \| (P^{rk+j})_{i \cdot} - \pi \|_{TV} \le \theta^k.
+            \]
+        \item
+            To finish the proof, let \( \alpha = \theta^{1/r} \) and \(
+            C= 1/\theta \).
+    \end{enumerate}
+\end{proof}
+
+\subsection*{Amusing Example of a Stationary Distribution}
+
+The following example is adapted from the solution in \link {http://www.laurentlessard.com/bookproofs/is-this-bathroom-occupied/}
+{Lessard} based on the problem originally posed in \link{https://fivethirtyeight.com/features/is-this-bathroom-occupied/}
+{The Riddler}.  The interest is partly in the humorous context and
+partly that the context obscures that the Markov chain has more states
+than is at first obvious.  It is also similar to a more serious
+application, a finite state machine, an abstract machine that can be in
+exactly one of a finite number of states at any given time.  The finite
+state machine can change from one state to another in response to some
+inputs.  Alternatively, this is an example of a random walk on a
+graph, illustrated in Figure~%
+\ref{fig:stationarydistributions:bathroomoccupancy}.
+
+\begin{quotation}
+    There is a bathroom in your office building that has only one
+    toilet.  There is a small sign stuck to the outside of the door that
+    you can slide from ``Vacant'' to ``Occupied'' so that no one else
+    will try the door handle (theoretically) when you are inside.
+    Unfortunately, people often forget to slide the sign to ``Occupied''
+    when entering, and they often forget to slide it to ``Vacant'' when
+    exiting.
+
+    Assume that \( 1/3 \) of bathroom users don't notice the sign upon
+    entering or exiting.  Therefore, whatever the sign reads before
+    their visit, it still reads the same thing during and after their
+    visit.  Another \( 1/3 \) of the users notice the sign upon entering
+    and make sure that it says ``Occupied'' as they enter.  However,
+    half the time they forget to slide it to ``Vacant'' when they exit.
+    The remaining \( 1/3 \) of the users are very conscientious:  They
+    make sure the sign reads ``Occupied'' when they enter, and then they
+    slide it to ``Vacant'' when they exit.  Finally, assume that the
+    bathroom is occupied exactly half of the time, all day, every day.
+
+    Two questions about this workplace situation:
+
+    \begin{enumerate}
+        \item
+            If you go to the bathroom and see that the sign on the door
+            reads ``Occupied,'' what is the probability that the
+            bathroom is actually occupied?
+        \item
+            If the sign reads ``Vacant,'' what is the probability that
+            the bathroom actually is vacant?
+        \item
+            Extra credit:  What happens as the percentage of
+            conscientious bathroom users changes?
+    \end{enumerate}
+\end{quotation}
+
+The first step defines the states and transition probabilities.  
+Because the bathroom can be either \emph{occupied} or
+\emph{vacant}, and the sign in front can either read ``Vacant'' or
+``Occupied'', there are at least four states, one for each possible
+pair of occupation state and sign.  However, 
+consider the state ``bathroom is occupied and the sign says it’s
+occupied''.  The states must distinguish between the cases where the person
+occupying the bathroom is conscientious (they will definitely slide the
+sign to ``Vacant'' when they leave) or not (they might leave the sign as
+``Occupied'' after they leave).
+
+Therefore augment the states to the Markov chain corresponding to
+the different ways in which the bathroom can be occupied.  Consider that
+there are three types of users:  oblivious, forgetful, and
+conscientious, each of proportion \( 1/3 \).
+
+Imagine a sequence of short times, say every minute.  Using the
+assumption that the bathroom is occupied exactly half of the time, all
+day, every day we can generalize slightly to assume that the transition
+from state to state each minute is itself a Markov chain with transition
+probability
+\[
+    \bordermatrix{ & O & V \cr
+    O & 1/2 & 1/2 \cr
+    V & 1/2 & 1/2 }.
+\] It is easy to see that this chain is irreducible, recurrent and
+therefore positive recurrent and aperiodic.  The stationary distribution
+is \( (1/2, 1/2) \), consistent with the assumption that the bathroom is
+occupied exactly half of the time, all day, every day.
+
+Now the possible transitions at each minute are:
+\begin{enumerate}
+    \item
+        A Conscientious person is in the bathroom, and it is Occupied
+        and the sign says Occupied.  This state is \( OCO \).  Either
+        the person stays and the state remains Occupied with sign
+        Occupied with probability \( 1/2 \), or the conscientious person
+        leaves and the state is \( VV \) with probability \( 1/2 \).
+    \item
+        A Forgetful person is in the bathroom, and it is Occupied and
+        the sign says Occupied.  This state is \( OFO \).  Either the
+        person stays and the state remains Occupied with sign Occupied
+        with probability \( 1/2 \), or the forgetful person leaves and
+        the state is \( VO \) with probability \( 1/2 \cdot 1/2 = 1/4 \)
+        or the forgetful person leaves, changing the sign and the state
+        is \( VV \) with probability \( 1/2 \cdot 1/2 = 1/4 \).
+    \item
+        An Oblivious person is in the bathroom, and it is Occupied and
+        the sign says Occupied.  Name this state as \( OOO \).  Either
+        the person stays and the state remains Occupied with sign
+        Occupied with probability \( 1/2 \), or the oblivious person
+        leaves and the state is \( VO \) with probability \( 1/2 \).
+    \item
+        A Oblivious person is in the bathroom, and it is Occupied but
+        the sign says Vacant.  Name this state as \( OOV \).  Either the
+        person stays and the state remains Occupied with sign Vacant
+        with probability \( 1/2 \), or the oblivious person leaves and
+        the state is \( VV \) with probability \( 1/2 \).
+    \item
+        The bathroom is Vacant, but the sign says Occupied.  With
+        probability \( 1/2 \) some person will approach, nevertheless
+        try the door and find the true state of vacancy and enter,
+        dealing with the sign according to their type.  Then the
+        transition is to \( OCO \) with probability \( 1/6 \), \( OFO \)
+        with probability \( 1/6 \) and \( OOO \) with probability \( 1/6
+        \).  With probability \( 1/2 \) the state remains \( VO \).
+    \item
+        The bathroom is Vacant, and the sign says Vacant.  With
+        probability \( 1/2 \) some person will approach, nevertheless
+        try the door and easily find the true state of vacancy and
+        enter, dealing with the sign according to their type.  Then the
+        transition is to \( OCO \) with probability \( 1/6 \), \( OFO \)
+        with probability \( 1/6 \) and \( OOV \) with probability \( 1/6
+        \).  With probability \( 1/2 \) the state remains \( VV \).
+\end{enumerate}
+
+A state transition diagram is in Figure~%
+\ref{fig:stationarydistributions:bathroomoccupancy}.
+
+\begin{figure}[htbp]
+\begin{asy}
+settings.outformat = "pdf";
+
+size(5inches);
+
+real myfontsize = 12;
+real mylineskip = 1.2*myfontsize;
+pen mypen = fontsize(myfontsize, mylineskip);
+defaultpen(mypen);
+
+real marge=1mm;
+pair z1=(-1, 1), z2=(0, 1), z3=(1, 1);
+pair z4=(-1, 0), z5=(0, 0), z6=(1, 0);
+transform r=scale(1.0);
+
+object state_OCO=draw("OCO",ellipse,z1,marge),
+state_VO =draw("VO",ellipse,z2,marge),
+state_OOO=draw("OOO",ellipse,z3,marge),
+state_OFO=draw("OFO",ellipse,z4,marge),
+state_VV =draw("VV",ellipse,z5,marge),
+state_OOV=draw("OOV",ellipse,z6,marge);
+
+add(new void(picture pic, transform t) {
+draw(pic,r*Label("$1/2$"),
+point(state_OCO,NW,t){NW}..{NE}point(state_OCO,SW,t),Arrow);
+draw(pic,r*Label("$1/2$", align=N),
+point(state_VO,NW,t){NW}..{SW}point(state_VO,NE,t),Arrow);
+draw(pic,r*Label("$1/2$", align=E),
+point(state_OOO,NE,t){NE}..{NW}point(state_OOO,SE,t),Arrow);
+  });
+
+add(new void(picture pic, transform t) {
+draw(pic,r*Label("$1/2$"),
+point(state_OFO,NW,t){NW}..point(state_OFO,SW,t),Arrow);
+draw(pic,r*Label("$1/2$", align=S),
+point(state_VV,SW,t){SW}..point(state_VV,SE,t),Arrow);
+draw(pic,r*Label("$1/2$", align=E),
+point(state_OOV,NE,t){NE}..point(state_OOV,SE,t),Arrow);
+  });
+
+add(new void(picture pic, transform t) {
+    draw(pic,r*Label("$1/6$", align=N),
+point(state_VO,NE,t)..point(state_OOO,NW,t),Arrow);
+    draw(pic,r*Label("$1/2$", align=S),
+point(state_OOO,SW,t)..point(state_VO,SE,t),Arrow);
+    draw(pic,r*Label("$1/6$", align=N),
+point(state_VV,NE,t)..point(state_OOV,NW,t),Arrow);
+    draw(pic,r*Label("$1/2$", align=S),
+point(state_OOV,SW,t)..point(state_VV,SE,t),Arrow);
+});
+
+add(new void(picture pic, transform t) {
+    draw(pic,r*Label("$1/6$", align=N),
+point(state_VO,NW,t)..point(state_OCO,NE,t),Arrow);
+    draw(pic,r*Label("$1/6$", align=2N, position=Relative(0.2)),
+point(state_VO,W,t)..point(state_OFO,NE,t),Arrow);
+    draw(pic,r*Label("$1/6$", align=2N, position=Relative(0.2)),
+point(state_VV,NW,t)..point(state_OCO,SE,t),Arrow);
+    draw(pic,r*Label("$1/6$", align=S),
+point(state_VV,SW,t)..point(state_OFO,SE,t),Arrow);
+    draw(pic,r*Label("$1/2$", align=3S, position=Relative(0.2)),
+point(state_OCO,S,t)..point(state_VV,W,t),Arrow);
+    draw(pic,r*Label("$1/4$", align=3S, position=Relative(0.2)),
+point(state_OFO,E,t)..point(state_VO,SW,t),Arrow);
+    draw(pic,r*Label("$1/4$", align=N, position=Relative(0.5)),
+point(state_OFO,E,t)..point(state_VV,W,t),Arrow);
+});
+\end{asy}
+    \caption{The state transition diagram for bathroom occupancy.}%
+    \label{fig:stationarydistributions:bathroomoccupancy}
+\end{figure}
+
+Then the transition probability matrix is
+\[
+    P= \bordermatrix{ & OCO & OFO & OOO & OOV & VO & VV \cr
+    OCO & 1/2 & 0 & 0 & 0 & 0 & 1/2 \cr
+    OFO & 0 & 1/2 & 0 & 0 & 1/4 & 1/4 \cr
+    OOO & 0 & 0 & 1/2 & 0 & 1/2 & 0 \cr
+    OOV & 0 & 0 & 0 & 1/2 & 1/2 & 0 \cr
+    VO & 1/6 & 1/6 & 1/6 & 0 & 1/2 & 0 \cr
+    VV & 1/6 & 1/6 & 0 & 1/6 & 0 & 1/2 \cr
+    }.
+\]
+
+From Figure~%
+\ref{fig:stationarydistributions:bathroomoccupancy} it is easy to see
+that the chain is irreducible and recurrent.  Because of the self-loops
+the states are aperiodic.  The stationary distribution is then the
+solution of
+\[
+    \pi P = \pi, \qquad \sum\limits_{i} \pi_i = 1
+\] with solution
+\begin{align*}
+    \pi_{OCO} &= \frac{1}{6}, & \pi_{OFO} &= \frac{1}{6}, & \pi_{OOO} &=
+    \frac {1}{12}, \\
+    \pi_{OOV} &= \frac{1}{12}, & \pi_{VO} &= \frac{1}{4}, & \pi_{VV} &=
+    \frac{1}{4}.
+\end{align*}
+Note that the bathroom is still Vacant half the time, although the time
+splits equally over the \( 2 \) sign states.
+
+\begin{align*}
+    \Prob{ \text{Vacant}\given \text{says ``Vacant''}} &= \frac{\pi_{VV}}
+    {\pi_{VV}+\pi_{OOV}} = \frac{1/4}{1/4+1/12} = \frac{3}{4}\\
+    \Prob{ \text{Occupied}\given \text{says ``Occupied''} } &= \frac{\pi_
+    {OCO}+\pi_{OFO}+\pi_{OOO}} {\pi_{OCO}+\pi_{OFO}+\pi_{OOO}+\pi_{VO}}
+    =\frac{5}{8}.
+\end{align*}
+
+\subsection*{Example on an Infinite State Space}
+
+Consider a random walk restricted to the non-negative integers.  Here
+\( P_{0,1} = 1 \) and otherwise, \( P_{i,i-1} = p \) with \( p > 1/2 \)
+and \( P_{i,i+1} = 1- p < 1/2 \).  The restriction \( p > 1/2 \) 
+insures that a stationary distribution exists.   The equations for
+stationarity are
+\[
+  \pi_0 = p \pi_1, \quad \pi_1 = \pi_0 + p \pi_2, \quad \pi_i = (1-p)
+  \pi_{i-1} + p \pi_{i+1} \quad i \ge 2.
+\]
+together with the normalization condition \( \sum_{\nu=0}^{\infty}
+\pi_{\nu} = 1 \).
+The solution is the stationary distribution \( \pi_0 = \frac{2p-1}{2p}
+\) and \( \pi_{\nu} = \frac{2p-1}{2p} \left( \frac{(1-p)^{\nu -
+      1}}{p^{\nu}} \right) \) for \( \nu \ge 1 \).  (See the exercises.)
+
+This Markov chain can be interpreted as random walk with negative
+drift and reflecting boundary on the
+non-negative integers.  It can also be interpreted as the embedded
+discrete-time chain for an M/M/1 queue in which \( p =
+\frac{\mu}{\lambda + \mu} \) where  \( \lambda \) is the arrival rate of
+customers and \( \mu \) is the service rate.
+
+\subsection*{Sources}
+
+This section is adapted from:  Ross, \booktitle{Introduction to
+Probability Models}, Taylor and Karlin, \booktitle{An Introduction to
+Stochastic Modeling}, Karlin and Taylor, \booktitle{A Second Course in
+Stochastic Processes} and Lessard, \link{http://www.laurentlessard.com/bookproofs/is-this-bathroom-occupied/}
+{Lessard}.
+
+The example of random walk on the non-negative integers is adapted
+from class notes by Karl Sigman,
+\link{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf}{Sigman}.
+
+\nocite{ross97}
+\nocite{taylor98-introd-stoch-model}
+\nocite{karlin81-secon-cours-stoch-proces}
+
+\hr
+
+\visual{Algorithms, Scripts, Simulations}{../../../../CommonInformation/Lessons/computer.png}
+\section*{Algorithms, Scripts, Simulations}
+
+\subsection*{Algorithm}
+
+\begin{codebox}
+    \Procname{Bathroom Markov Chain Simulation} \zi Comment Post:  Example
+    information about a simple Markov chain \li Load Markov chain
+    library \li Set state names \li Set transition probability matrix
+    \li Set start state \li Set up Markov chain with the library \li Set
+    an example length \li Create a sample path of example length \li
+    Create a second sample path of example length \li Set a long path
+    length, and a transient time \li Create a long sample path \li Slice
+    the long sample path from the transient time to the end \li 
+    Count appearances of each state, store in an empirical
+    array \li Compute the theoretical stable array \li \Return Empirical
+    stable distribution \li \Return Theoretical stable distribution
+\end{codebox}
+
+\subsection*{Scripts}
+
+\input{stationarydistributions_scripts}
+
+\hr
+
+\visual{Problems to Work}{../../../../CommonInformation/Lessons/solveproblems.png}
+\section*{Problems to Work for Understanding}
+
+\renewcommand{\theexerciseseries}{}
+\renewcommand{\theexercise}{\arabic{exercise}}
+
+\begin{exercise}
+    Provide examples of the classifications of states:
+    \begin{enumerate}[label=(\alph*)]
+    \item
+        A trivial two-state Markov chain in which neither state is
+        accessible from the other.
+    \item
+        A trivial two-state Markov chain in which both states
+        communicate.
+    \item
+        A Markov chain in which all states have period \( 2 \).
+    \item
+        A three-state Markov chain with two states absorbing and one
+        transient state.  What states are communicating in this example?
+    \item
+        An ergodic Markov chain.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+    \begin{enumerate}[label=(\alph*)]
+    \item
+        \[
+            \begin{pmatrix}
+                1 & 0 \\
+                0 & 1
+            \end{pmatrix}
+        \]
+    \item
+        \[
+            \begin{pmatrix}
+                0 & 1 \\
+                1 & 0
+            \end{pmatrix}
+            \text{ or }
+            \begin{pmatrix}
+                1/2 & 1/2 \\
+                1/2 & 1/2
+            \end{pmatrix}
+        \]
+    \item
+        \[
+            \begin{pmatrix}
+                0 & 1 \\
+                1 & 0
+            \end{pmatrix}
+        \]
+    \item
+        \[
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                1/2 & 0 & 1/2 \\
+                0 &0 & 1
+            \end{pmatrix}
+            .
+        \] State \( 2 \) communicates with states \( 1 \) and \( 3 \),
+        but that is all.
+    \item
+        \[
+            \begin{pmatrix}
+                1/2 & 1/2 & 0 \\
+                1/2 & 0 & 1/2 \\
+                0 & 1/2 & 1/2 \\
+            \end{pmatrix}
+            .
+        \]
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    Randomly distribute three balls between two urns, labeled \( A \)
+    and \( B \).  Each period, select an urn at random, and if it is not
+    empty, remove a ball from that urn and put it in the other
+    urn. If the urn is empty, go to the next period. Make
+    a Markov chain model of this situation and classify all states. In
+    the long run what fraction of time is urn \( A \) empty?  Does this
+    depend on how the balls are initially distributed between the two
+    urns?
+\end{exercise}
+\begin{solution}
+    The \( 4 \) states are the number of balls in urn \( A \), from \( 0
+    \) to \( 3 \).
+    \[
+        P =
+        \begin{pmatrix}
+            1/2 & 1/2 & 0 & 0 \\
+            1/2 & 0 & 1/2 & 0 \\
+            0 & 1/2 & 0 & 1/2 \\
+            0 & 0 & 1/2 & 1/2
+        \end{pmatrix}
+        .
+    \] The Markov chain is ergodic, all states communicate, are positive
+    recurrent, aperiodic, there are no absorbing or transient states,
+    the Markov chain is irreducible.  The stationary distribution is \(
+    \pi = [1/4, 1/4, 1/4, 1/4] \) so in the long run urn \( A \) spends \(
+    1/4 \) of the time empty.  This does not depend on the initial
+    distribution of balls.
+\end{solution}
+
+\begin{exercise}
+    Assume the fraction of oblivious, forgetful, and conscientious users
+    are \( p \), \( q \), and \( r \) respectively, with \( 0 \le p,q,r
+    \le 1 \) and \( p + q + r = 1 \).  Solve the bathroom problem under
+    this general assumption.
+\end{exercise}
+\begin{solution}
+    The transition probability matrix is
+    \[
+        P= \bordermatrix{ & OCO & OFO & OOO & OOV & VO & VV \cr
+        OCO & 1/2 & 0 & 0 & 0 & 0 & 1/2 \cr
+        OFO & 0 & 1/2 & 0 & 0 & 1/4 & 1/4 \cr
+        OOO & 0 & 0 & 1/2 & 0 & 1/2 & 0 \cr
+        OOV & 0 & 0 & 0 & 1/2 & 1/2 & 0 \cr
+        VO & r/2 & q/2 & p/2 & 0 & 1/2 & 0 \cr
+        VV & r/6 & q/6 & 0 & p/6 & 0 & 1/2 \cr
+        }.
+    \] The stationary distribution is
+    \[
+        \left( \frac{r}{2}, \frac{q}{2}, \frac{p(q + 2p)}{4}, \frac{p(2r
+        + q)}{4}, \frac{q + 2p}{4}, \frac{2r + q}{4} \right).
+    \]
+\end{solution}
+
+\begin{exercise}
+    Assume the fraction of oblivious, forgetful, and conscientious users
+    are \( p \), \( q \), and \( r \) respectively, with \( 0 \le p,q,r
+    \le 1 \) and \( p + q + r = 1 \).  Further assume the bathroom is
+    occupied \( 2/3 \) of the time, and vacant \( 1/3 \) of the time.
+    Solve the bathroom problem under this general assumption.
+
+\end{exercise}
+\begin{solution}
+    See the next solution with \( v = 1/3 \).
+\end{solution}
+
+\begin{exercise}
+    Assume the fraction of oblivious, forgetful, and conscientious users
+    are \( p \), \( q \), and \( r \) respectively, with \( 0 \le p,q,r
+    \le 1 \) and \( p + q + r = 1 \).  Further assume the bathroom is
+    occupied \( 1-v \) of the time, and vacant \( v \) of the time,
+    where \( 0 < v < 1 \).  Solve the bathroom problem under this
+    general assumption.  What happens as \( v \to 0 \) or \( v \to 1 \)?
+\end{exercise}
+\begin{solution}
+    The transition probability matrix is
+    \[
+        P= \bordermatrix{ & OCO & OFO & OOO & OOV & VO & VV \cr
+        OCO & 1-v & 0 & 0 & 0 & 0 & v \cr
+        OFO & 0 & 1-v & 0 & 0 & 1/4 & 1/4 \cr
+        OOO & 0 & 0 & 1-v & 0 & v & 0 \cr
+        OOV & 0 & 0 & 0 & 1-v & v & 0 \cr
+        VO & r(1-v) & q(1-v) & p(1-v) & 0 & v & 0 \cr
+        VV & r(1-v) & q(1-v) & 0 & p(1-v) & 0 & v \cr
+        }.
+      \] The stationary distribution is:
+      \begin{multline*}
+        \left( r(1-v), q(1-v), \frac{p(q + 2p)(1-v)}{2}, \frac{p(2r + q)
+            (1-v)}{2}, \right.\\
+          \left. \frac{(q + 2p)v}{2}, \frac{(2r + q)v}{2} \right).
+      \end{multline*}
+    As \( v \to 1 \), the stationary distribution tends to \( \left(0,
+    0, 0, 0, \frac{(q + 2p)}{2}, \frac{(2r + q)}{2} \right) \). As \( v
+    \to 0 \), the stationary distribution tends to \( \left(r, q, \frac{p
+    (q + 2p)}{2}, \frac{p(2r + q)}{2}, 0, 0 \right) \).
+\end{solution}
+
+\begin{exercise}
+    Assume the fraction of oblivious, forgetful, and conscientious users
+    are \( p \), \( q \), and \( r \) respectively, with \( 0 \le p,q,r
+    \le 1 \) and \( p + q + r = 1 \).  Also assume that the oblivious
+    people spend twice as long in the bathroom as the conscientious or
+    forgetful people.  Assume the bathroom is vacant \( v \) of the
+    time, where \( 0 < v < 1 \).  Are all these assumptions consistent?
+    Solve the bathroom problem under this general assumption.
+\end{exercise}
+\begin{solution}
+    Suppose the probability of an oblivious person entering the bathroom
+    is \( w \).  Then proportion of time that the bathroom is occupied
+    by an oblivious person is \( p(1-w) \).  Likewise, and as in the
+    previous problem, the proportion of time the bathroom is occupied by
+    forgetful and conscientious people is \( q(1-v) \) and \( r(1-v) \)
+    respectively.  If the probability of occupancy by forgetful and
+    conscientious people is equal at \( 1-v \) then the assumption that
+    oblivious people spend twice as much time in the bathroom is \( p(1-w)
+    = (q + r)(1-v) \) or \( w = 1 - \frac{q + r}{p} (1-v) = \frac{1-p}{p}
+    (1-v) \).  Since \( 0 < w < 1 \), this puts some restrictions
+    depending on \( p \) and \( v \).
+
+    The transition probability matrix is
+    \[
+        P= \bordermatrix{ & OCO & OFO & OOO & OOV & VO & VV \cr
+        OCO & 1-v & 0 & 0 & 0 & 0 & v \cr
+        OFO & 0 & 1-v & 0 & 0 & 1/4 & 1/4 \cr
+        OOO & 0 & 0 & 1-w & 0 & w & 0 \cr
+        OOV & 0 & 0 & 0 & 1-w & w & 0 \cr
+        VO & r(1-v) & q(1-v) & p(1-v) & 0 & v & 0 \cr
+        VV & r(1-v) & q(1-v) & 0 & p(1-v) & 0 & v \cr
+        }.
+    \]
+\end{solution}
+
+\begin{exercise}
+    Prove Corollary~%
+    \ref{cor:stationarydistributions:allrecurrent}:
+    \begin{enumerate}
+        \item
+            For any communication class \( C \) of a Markov chain, all
+            states in \( C \) are either recurrent or all states in \( C
+            \) are transient.  That is
+            \begin{itemize}
+                \item
+                    if \( i \) and \( j \) communicate, and \( i \) is
+                    recurrent, then so is \( j \)
+                \item
+                    if \( i \) and \( j \) communicate, and \( i \) is
+                    transient, then so is \( j \).
+            \end{itemize}
+        \item
+            For an irreducible Markov chain, either all states are
+            recurrent or all states are transient.
+    \end{enumerate}
+\end{exercise}
+\begin{solution}
+    \begin{enumerate}
+        \item
+            First consider the statement:  If \( i \) and \( j \)
+            communicate, and \( i \) is recurrent, then so is \( j \).
+            \begin{enumerate}
+                \item
+                    If \( i \) and \( j \) communicate, then there is an
+                    \( r > 0 \) such that \( (P^r)_{ji} > 0 \) and an \(
+                    s > 0 \) such that \( (P^s)_{ij} > 0 \).
+                \item
+                    If \( i \) is recurrent, then \( \sum_{n=1}^{\infty}
+                    (P^n)_{ii} = \infty \) so also \( \sum_{n=r + s + 1}^
+                    {\infty} (P^n)_{ii} = \infty \)
+                \item
+                    \( ( P^n)_{jj} > (P^r)_{ji}(P^{n-r-s})_{ii}(P^s)_{ij}
+                    \), that is the probability of going from \( j \) to
+                    \( j \) is greater than the probability of an
+                    excursion from \( j \) to \( i \), then from \( i \)
+                    to \( i \), and from \( i \) to \( j \).
+                \item
+                  Then
+                  \begin{multline*}
+                     \sum_{n=1}^{\infty}(P^n)_{jj} > \sum_{n=r+s1}^{\infty}
+                     (P^r)_{ji}(P^{n-r-s})_{ii}(P^s)_{ij} = \\
+                     (P^r)_{ji}\left(\sum_{n=r+s+1}^{\infty}(P^{n-r-s})_{ii}\right)(P^s)_{ij}
+                     = \infty
+                  \end{multline*}
+                    Therefore, \( j \) is recurrent.
+            \end{enumerate}
+        \item
+            Suppose \( i \) and \( j \) communicate, and \( i \) is
+            transient, but \( j \) is recurrent.  Since \( j \)
+            communicates with \( i \) and \( j \) is recurrent, by the
+            previous proof then \( i \) must be recurrent, a
+            contradiction. Therefore, \( j \) must be transient.
+        \item
+            The statement follows from the definition of irreducible and
+            the previous proofs.
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    If \( a_n \to a \) as \( n \to \infty \), then
+    \[
+        \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^{n} a_\nu =
+        a,
+    \] so that if \( a_n \) converges to \( a \), the sequence of
+    averages converges to \( a \).
+\end{exercise}
+\begin{solution}
+    Let \( \epsilon > 0 \) be given.  Choose \( N_1 \) so large that \(
+    \abs{a_n - a} < \epsilon/2 \) for \( n > N_1 \).  Choose \( N_2 > N_1
+    \) so large that \( \frac{1}{n} \sum_{\nu=1}^{N_1} \abs{a_{\nu} - a}
+    < \epsilon/2 \) for \( n > N_2 \).  Then for \( n > N_2 \),
+    \begin{align*}
+        \abs{\frac{1}{n} \sum\limits_{\nu=1}^{n} a_n - a} &\le \frac{1}{n}
+        \sum\limits_{\nu=1}^{N_1} \abs{a_n - a} + \frac{1}{n} \sum\limits_
+        {\nu=N_1+1}^{n} \abs{a_n - a} \\
+        &\le \frac{1}{n} \sum\limits_{\nu=1}^{N_1} \abs{a_n - a} + \frac
+        {1}{n} \sum\limits_{\nu=1}^{n} \abs{a_n - a} \\
+        &< \frac{\epsilon}{2} + \frac{1}{n} \sum\limits_{\nu=N_1+1}^{n}
+        \frac{\epsilon}{2} \\
+        &< \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
+    \end{align*}
+    Therefore
+    \[
+        \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^{n} a_{\nu}
+        = a,
+    \]
+\end{solution}
+
+\begin{exercise}
+For the  random walk restricted to the non-negative integers with
+\( P_{0,1} = 1 \) and otherwise, \( P_{i,i-1} = p \) with \( p > 1/2 \)
+and \( P_{i,i+1} = 1- p < 1/2 \), show that the stationary distribution is
+\( \pi_0 = \frac{2p-1}{2p}
+\) and \( \pi_{\nu} = \frac{2p-1}{2p} \left( \frac{(1-p)^{\nu -
+      1}}{p^{\nu}} \right) \) for \( \nu \ge 1 \).
+\end{exercise}
+\begin{solution}
+  It is immediate that \( \pi_1 = \frac{1}{p} \pi_0 \).  Further, by induction
+  \( \pi_i = \frac{(1-p)^{i-1}}{p^i} \).  The normalization condition is
+  \[
+    \pi_0 \left( 1 + \frac{1}{p} + \frac{(1-p)}{p^2} + \frac{(1-p)^{2}}{p^3} + \dots \right) = 1.
+  \]
+  Now is apparent why \( p > 1/2 \) is necessary for stationarity. The
+  normalization simplifies to \( \pi_0 \left( 1 + \frac{1}{2p-1} \right) = 1 \).  Then
+  \( \pi_{\nu} = \frac{2p-1}{2p} \left( \frac{(1-p)^{\nu -
+      1}}{p^{\nu}} \right) \) for \( \nu \ge 1 \).
+\end{solution}
+\hr
+
+\visual{Books}{../../../../CommonInformation/Lessons/books.png}
+\section*{Reading Suggestion:}
+
+\bibliography{../../../../CommonInformation/bibliography}
+
+%   \begin{enumerate}
+%     \item
+%     \item
+%     \item
+%   \end{enumerate}
+
+\hr
+
+\visual{Links}{../../../../CommonInformation/Lessons/chainlink.png}
+\section*{Outside Readings and Links:}
+\begin{enumerate}
+    \item
+        http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-MCII.pdf
+    \item
+    \item
+    \item
+\end{enumerate}
+
+\section*{\solutionsname} \loadSolutions
+
+\hr
+
+\mydisclaim \myfooter
+
+Last modified:  \flastmod
+
+\end{document}
+
+File name                  : stationarydistributions.tex
+Number of characters       : 62329
+Number of words            : 6525
+Percent of complex words   : 16.77
+Average syllables per word : 1.7254
+Number of sentences        : 188
+Average words per sentence : 34.7074
+Number of text lines       : 1386
+Number of blank lines      : 254
+Number of paragraphs       : 244
+
+
+READABILITY INDICES
+
+Fog                        : 20.5895
+Flesch                     : 25.6411
+Flesch-Kincaid             : 18.3052
+
+
+
+
+%%% Local Variables:
+%%% TeX-master: t
+%%% End:
