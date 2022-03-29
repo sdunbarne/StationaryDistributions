@@ -165,11 +165,12 @@ between the two urns?
   \item
         \( m_i \) -- the \defn{expected return time} \( \sum_{\nu=1}^\infty
     \nu f^\nu_{ii} \).
-
+  \end{enumerate}
+  
 \visual{Mathematical Ideas}{../../../../CommonInformation/Lessons/mathematicalideas.png}
 \section*{Mathematical Ideas}
 
-\subsection*{Classification of States and Stationary Distributions}
+\subsection*{Classification of States}
 
 \begin{definition}
     State \( j \) is \defn{accessible} from state \( i \) if \( (P^{n})_
@@ -317,8 +318,8 @@ between the two urns?
             + \cdots + b'_j m_j = \alpha_1 n_1 + \cdots + \alpha_s n_s \) so that
             the terms with positive coefficients are written first.
             Thus \( d' = N_1 - N_2 \) with \( N_1 \in A \) and \( N_2 \in
-            A \). Let \( M \) be the positive integer \( N_2^2/d \) (
-            a positive integer since \( d' \) is a divisor of
+            A \). Let \( M \) be the positive integer \( N_2^2/d \)
+            (a positive integer since \( d' \) is a divisor of
             \(N_{2}\in A\)).
             Every integer \( m \ge M \) can be written as \( m = M + K =
             N_2^2/d + K \), with \( K \ge 0 \).  Using the Division
@@ -341,7 +342,7 @@ between the two urns?
     \end{enumerate}
 \end{proof}
 
-\begin{proof}[of Propostion \ref{prop:stationarydistributions:communicating}]
+\begin{proof}[of Propostion~\ref{prop:stationarydistributions:communicating}]
     \begin{enumerate}
         \item
             \begin{enumerate}
@@ -350,12 +351,12 @@ between the two urns?
                     {ij}})_{ij} > 0 \) for some \( n_{ij} \ge 1 \) and \(
                     (P^{n_{ji}})_{ji} > 0 \) for some \( n_{ji} \ge 1 \).
                     Additionally since \( i \) and \( j \) communicate, \(
-                    (P^{n_{ii}})_{n_{ii}} > 0 \) for some \( n_{ii} \).
+                    (P^{n_{ii}})_{ii} > 0 \) for some \( n_{ii} \).
                 \item
                     Then
                     \[
                         (P^{n_{ji} + n_{ii} + n_{ij}})_{jj} \ge (P^{n_{ji}})_
-                        {ji} \cdot (P^{n_{ii}})_{jj} \cdot (P^{n_{ij}})_
+                        {ji} \cdot (P^{n_{ii}})_{ii} \cdot (P^{n_{ij}})_
                         {ij} > 0.
                     \] Furthermore, \( (P^{2n_{ii}})_{ii} > 0 \), so
                     \[
@@ -370,8 +371,10 @@ between the two urns?
                     n_{ii} \).
                 \item
                     Now \( d(j) \) is a divisor of \( n_{ii} \) and \( d
-                    (i) = \gcd(n_{ii}) \) so \( d(j) \le d(i) \) and \(
-                    d(i) \le d(j) \)
+                    (i) = \gcd(n_{ii}) \) so \( d(j) \le d(i) \).
+                  \item 
+                    By a symmetrical arument, \(d(i) \le d(j) \) so \(
+                    d(i) = d(j) \).
             \end{enumerate}
         \item
             \begin{enumerate}
@@ -393,29 +396,28 @@ between the two urns?
                     j \) in \( m_{ij} \) steps with return to \( i \)
                     from \( j \) in \( m_{ji} \) steps.
                 \item
-                    Next note that if \( (P^{n_j})_{ii} > 0 \) implies
+                    Using the Markov property of independence of the
+                    past and the future given the present state,
+                    \( (P^{n_j})_{ii} > 0 \) implies
                     that for any positive integer \( c_j \), \( (P^{c_j
                     n_j})_ {ii} > 0 \), that is, the probability of \( c_j
                     \) sequential returns is still positive.
-
-                    Should assert here that \( d(i) \) is the \( \gcd(n_1,
-                    \dots, n_k) \).  (Note:  Certainly by the previous, \(
-                    d(i) \) is a divisor, but is it the greatest?)
                 \item
                     By the number theoretic Lemma~%
                     \ref{lem:stationarydistributions:numtheory}, there
                     exists \( N \) and positive integers \( c_1, \dots,
                     c_k \) such that if \( n \ge N \)
                     \[
-                        (P^{n d(i)})_{ii} = (P^{c_1 n_1 + \dots + c_k n_k})_
+                        (P^{n d(i)})_{ii} = (P^{c_1 n_1 + \cdots + c_k n_k})_
                         {ii} \ge (P^{c_1 n_1})_{ii} \cdot \dots \cdot (P^
                         {c_k n_k})_{ii} >0.
                     \]
             \end{enumerate}
           \item
-            So
+            Using the hypothesis
             \[
-                (P^{m + n d(i)})_{ji} \ge (P^{n d(i)})_{ii} (P^m)_{ji}.
+                (P^{m + n d(i)})_{ji} \ge (P^{n d(i)})_{ii} (P^m)_{ji}
+                > 0.
             \] That is, the probability of an excursion to \( j \) from \(
             i \) in \( m + n d(i) \) steps is at least as great as the
             probability of an excursion from \( i \) to \( i \) in \( n
@@ -437,6 +439,8 @@ between the two urns?
     A Markov chain in which each state has period \( 1 \) is \defn{aperiodic}.
 \end{definition}
 \index{aperiodic}
+
+\subsection*{Recurrent and Transient States}
 
 \begin{definition}
     Let the random variable \( \tau_{ii} \) be the \defn{return time} to
@@ -581,6 +585,8 @@ between the two urns?
     Left as an exercise.
 \end{proof}
 
+\subsection*{Positive Recurrence}
+
 \begin{definition}
     A state \( i \) is \defn{positive recurrent} if it is recurrent and
     starting in \( i \), the expected time until the process returns to
@@ -718,9 +724,19 @@ between the two urns?
 \end{definition}
 \index{ergodic}
 
+\begin{example}
+  In infinite state space Markov chains recurrence, transience, positive
+  recurrence and null recurrence are distinct.  Symmetric nearest
+  neighbor random walk on \( \Integers \) and \( \Integers^2 \) is
+  null recurrent.  However symmetric nearest
+  neighbor random walk on \( \Integers^N \) is transient.  See
+  \cite[Chapter 13]{lesigne05}
+\end{example}
+\subsection*{Fundamental Theorems}
+
 \begin{remark}
-    Make the notation convention that \( (P^{0})_{ii} = 1 \).  Also
-    recall the definition of the expected return time \( m_i = \sum_ {\nu=0}^
+    Make the notation convention that \( (P^{0})_{ii} = 1 \).  Define
+    the \defn{expected return time} as \( m_i = \sum_ {\nu=0}^
     {\infty} \nu f^\nu_{ii} \).
 \end{remark}
 
@@ -737,59 +753,6 @@ between the two urns?
 \end{definition}
 \index{long run proportion}
 
-\begin{remark}
-    Taking expected values,
-    \[
-        \E{\indicatorrv{X_m = j \given X_0 = i}} = \Prob{X_m = j \given
-        X_0 = i} = (P^m)_{ij}
-    \] so the long run proportion is alternatively defined as
-    \[
-        \pi_j = \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n (P^
-        {\nu})_ {ij}
-    \] using the Bounded Convergence Theorem (explain how!).
-\end{remark}
-
-\begin{remark}
-    Recalling that \( (P^{\nu})_{ij} \) is the \( i,j \) component of
-    the matrix \( P^{\nu} \) and using the independence on \( i \), the
-    long run proportions in matrix form are
-    \[
-        \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n P^{\nu} =
-        \begin{pmatrix}
-            \pi_1 & \pi_2 & \ldots & \pi_k \\
-            \pi_1 & \pi_2 & \ldots & \pi_k \\
-            \vdots & \vdots & \ddots & \vdots \\
-            \pi_1 & \pi_2 & \ldots & \pi_k \\
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            \pi \\
-            \pi \\
-            \vdots \\
-            \pi
-        \end{pmatrix}
-        .
-    \]
-\end{remark}
-
-\begin{remark}
-    Observing the Markov chain at a time far in the future, \( \pi_j \)
-    is the probability the chain is in state \( j \).  To see this:  Let
-    \( N \) be a random observation time, with uniform distribution over
-    the integers \( \set{1, 2, \dots, n} \), independent of the chain.
-    Then conditioning on \( N \)
-    \[
-        \Prob{X_N = j} = \sum\limits_{\nu=1}^n \Prob{X_{\nu} = j \given
-        X_0 = i} \Prob{N = m} = \frac{1}{n} \sum\limits_{\nu=1}^n (P^{\nu})_
-        {ij} \approx \pi_j.
-    \]
-\end{remark}
-
-\begin{definition}
-    The \defn{expected return time} \( m_i \) is \( \sum_{\nu=1}^\infty
-    \nu f^\nu_{ii} \).
-\end{definition}
-
 \begin{theorem}[Limit Theorem for Markov Chain Powers]
     For an irreducible, positive recurrent and aperiodic Markov chain,
     \begin{enumerate}
@@ -799,11 +762,11 @@ between the two urns?
             \] and
         \item
             \[
-                \lim_{n \to \infty} (P^{n})_{ij} = \lim_{n \to \infty} (P^
-                {n})_{ii}.
+                \lim_{n \to \infty} (P^{n})_{ij} = \lim_{n \to \infty} (P^{n})_{ii}.
             \]
     \end{enumerate}
 \end{theorem}
+\index{Limit Theorem for Markov Chain Powers}
 
 \begin{proof}
     \begin{enumerate}
@@ -888,6 +851,54 @@ between the two urns?
         {\infty} \nu f^{\nu}_{ii}} = \frac{1}{m_i},
     \]
 \end{corollary}
+
+\begin{remark}
+    Taking expected values,
+    \[
+        \E{\indicatorrv{X_m = j \given X_0 = i}} = \Prob{X_m = j \given
+        X_0 = i} = (P^m)_{ij}
+    \] so the long run proportion is alternatively defined as
+    \[
+        \pi_j = \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n (P^
+        {\nu})_ {ij}
+    \] using the Bounded Convergence Theorem to interchange the limit
+    and the expectation.
+\end{remark}
+
+\begin{remark}
+    Recalling that \( (P^{\nu})_{ij} \) is the \( i,j \) component of
+    the matrix \( P^{\nu} \) and using the independence on \( i \), the
+    long run proportions in matrix form are
+    \[
+        \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n P^{\nu} =
+        \begin{pmatrix}
+            \pi_1 & \pi_2 & \ldots & \pi_k \\
+            \pi_1 & \pi_2 & \ldots & \pi_k \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \pi_1 & \pi_2 & \ldots & \pi_k \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \pi \\
+            \pi \\
+            \vdots \\
+            \pi
+        \end{pmatrix}.
+    \]
+\end{remark}
+
+\begin{remark}
+    Observing the Markov chain at a time far in the future, \( \pi_j \)
+    is approximately the probability the chain is in state \( j \).  To see this:  Let
+    \( N \) be a random observation time, with uniform distribution over
+    the integers \( \set{1, 2, \dots, n} \), independent of the chain.
+    Then conditioning on \( N \)
+    \[
+        \Prob{X_N = j} = \sum\limits_{\nu=1}^n \Prob{X_{\nu} = j \given
+        X_0 = i} \Prob{N = m} = \frac{1}{n} \sum\limits_{\nu=1}^n (P^{\nu})_
+        {ij} \approx \pi_j.
+    \]
+\end{remark}
 
 \begin{theorem}[Fundamental Theorem of Markov Chains]
     For an irreducible, positive recurrent and aperiodic Markov chain \(
@@ -1028,6 +1039,7 @@ between the two urns?
         \alpha^n.
     \]
 \end{theorem}
+\index{Convergence Theorem by Total Variation}
 
 \begin{proof}
     \begin{enumerate}
@@ -1140,7 +1152,7 @@ Because the bathroom can be either \emph{occupied} or
 \emph{vacant}, and the sign in front can either read ``Vacant'' or
 ``Occupied'', there are at least four states, one for each possible
 pair of occupation state and sign.  However, 
-consider the state ``bathroom is occupied and the sign says it’s
+consider the state ``bathroom is occupied and the sign says it's
 occupied''.  The states must distinguish between the cases where the person
 occupying the bathroom is conscientious (they will definitely slide the
 sign to ``Vacant'' when they leave) or not (they might leave the sign as
@@ -1371,20 +1383,27 @@ from class notes by Karl Sigman,
 
 \subsection*{Algorithm}
 
-\begin{codebox}
-    \Procname{Bathroom Markov Chain Simulation} \zi Comment Post:  Example
-    information about a simple Markov chain \li Load Markov chain
-    library \li Set state names \li Set transition probability matrix
-    \li Set start state \li Set up Markov chain with the library \li Set
-    an example length \li Create a sample path of example length \li
-    Create a second sample path of example length \li Set a long path
-    length, and a transient time \li Create a long sample path \li Slice
-    the long sample path from the transient time to the end \li 
-    Count appearances of each state, store in an empirical
-    array \li Compute the theoretical stable array \li \Return Empirical
-    stable distribution \li \Return Theoretical stable distribution
-\end{codebox}
+\begin{algorithm}[H]
+  \SetAlgoLined
+  \KwData{State names and probability transition matrix}
+  \KwResult{Information about a simple Markov chain}
 
+  initialization\;
+  Load Markov chain library\;
+  Set state names, set transition probability matrix, set start
+  state\;
+  Set an example length and create a sample path of example length\;
+  Set a long path length, and a transient time\;
+  Create a long sample path\;
+  Slice the long sample path from the transient time to the end\;
+  In the slice count the appearance of each state\;
+  Store in an empirical array\;
+  Compute the theoretical stable array\;
+
+  \KwRet{Stable distribution and theoretical stable distribution}
+  \caption{Bathroom occupancy Markov chain simulation.}
+\end{algorithm}
+  
 \subsection*{Scripts}
 
 \input{stationarydistributions_scripts}
@@ -1449,8 +1468,7 @@ from class notes by Karl Sigman,
                 1 & 0 & 0 \\
                 1/2 & 0 & 1/2 \\
                 0 &0 & 1
-            \end{pmatrix}
-            .
+            \end{pmatrix}.
         \] State \( 2 \) communicates with states \( 1 \) and \( 3 \),
         but that is all.
     \item
@@ -1459,8 +1477,7 @@ from class notes by Karl Sigman,
                 1/2 & 1/2 & 0 \\
                 1/2 & 0 & 1/2 \\
                 0 & 1/2 & 1/2 \\
-            \end{pmatrix}
-            .
+            \end{pmatrix}.
         \]
 \end{enumerate}
 \end{solution}
@@ -1702,7 +1719,7 @@ and \( P_{i,i+1} = 1- p < 1/2 \), show that the stationary distribution is
   It is immediate that \( \pi_1 = \frac{1}{p} \pi_0 \).  Further, by induction
   \( \pi_i = \frac{(1-p)^{i-1}}{p^i} \).  The normalization condition is
   \[
-    \pi_0 \left( 1 + \frac{1}{p} + \frac{(1-p)}{p^2} + \frac{(1-p)^{2}}{p^3} + \dots \right) = 1.
+    \pi_0 \left( 1 + \frac{1}{p} + \frac{(1-p)}{p^2} + \frac{(1-p)^{2}}{p^3} + \cdots \right) = 1.
   \]
   Now is apparent why \( p > 1/2 \) is necessary for stationarity. The
   normalization simplifies to \( \pi_0 \left( 1 + \frac{1}{2p-1} \right) = 1 \).  Then
