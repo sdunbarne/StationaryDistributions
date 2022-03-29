@@ -1,13 +1,12 @@
 %%% -*-LaTeX-*-
 %%% stationarydistributions.tex.orig
 %%% Prettyprinted by texpretty lex version 0.02 [21-May-2001]
-%%% on Thu Jun  4 05:45:25 2020
+%%% on Tue Mar 29 09:48:57 2022
 %%% for Steve Dunbar (sdunbar@family-desktop)
 
 \documentclass[12pt]{article}
 
-\input{../../../../etc/macros}
-%% \input{../../../../etc/mzlatex_macros}
+\input{../../../../etc/macros} %% \input{../../../../etc/mzlatex_macros}
 \input{../../../../etc/pdf_macros}
 
 \bibliographystyle{plain}
@@ -36,7 +35,7 @@
 % Everyone: contains no mathematics.
 % Student: contains scenes of mild algebra or calculus that may require guidance.
 % Mathematically Mature:  may contain mathematics beyond calculus with proofs.
-Mathematicians Only: prolonged scenes of intense rigor.
+Mathematicians Only:  prolonged scenes of intense rigor.
 
 \hr
 
@@ -59,8 +58,8 @@ between the two urns?
     \item
         The states of a Markov chain partition into equivalence classes
         according to their type:  communicating, periodic versus
-        aperiodic, recurrent versus transient, or positive recurrent versus null
-        recurrent.
+        aperiodic, recurrent versus transient, or positive recurrent
+        versus null recurrent.
     \item
         Every irreducible, aperiodic Markov chain has a unique
         non-negative solution of
@@ -96,8 +95,8 @@ between the two urns?
     \item
         The states of a Markov chain partition into equivalence classes
         according to their type:  \defn{communicating}, \defn{periodic}
-        versus \defn{aperiodic}, and \defn{recurrent} versus
-        \defn{transient}, \defn{positive recurrent} versus \defn{null recurrent}.
+        versus \defn{aperiodic}, and \defn{recurrent} versus \defn{transient},
+        \defn{positive recurrent} versus \defn{null recurrent}.
     \item
         The Markov chain is \defn{irreducible} if it has only one
         communicating class.
@@ -108,9 +107,9 @@ between the two urns?
             \tau_{ii} &= \min\setof{n \ge 1}{X_n = i \given X_0 = i}, \\
             \tau_{ii} &= \infty \text{ if } X_n \ne i, n \ge 1.
         \end{align*}
-        The distribution of \( \tau_{ii} \) is \( f^n_{ii} \). The \defn
-        {expected return time} \( m_i \) is \( \sum_ {\nu=1}^\infty \nu
-        f^\nu_{ii} \).
+        The distribution of \( \tau_{ii} \) is \( f^n_{ii} \).  The
+        \defn {expected return time} \( m_i \) is \( \sum_ {\nu=1}^\infty
+        \nu f^\nu_{ii} \).
     \item
         If a state \( i \) is recurrent, then it is \defn{positive
         recurrent} if, starting in \( i \), the expected time until the
@@ -146,27 +145,32 @@ between the two urns?
     \item
         \( (P^n)_{ij} \) -- the \( i,j \) entry of the \( n \)th power
         of \( P \).
-      \item  \( d(i) \) -- the period of a state \( i \)
-      \item \( \tau_{ii} \) -- the \defn{return time} to
-    state \( i \) given the chain starts in \( i \)
-      \item \( \tau_{ij} \) -- the time to
-    state \( j \) given the chain starts in \( i \)
-  \item \( f^n_{ii} \) --  the
-    probability that starting from \( i \), the first return to state \(
-    i \) occurs at step \( n \)
-  \item \( f_i = \Prob{\tau_{ii} < \infty} \)
-    -- the probability that starting in \( i \) the process will
-    \emph{ever} reenter state \( i \)
-  \item     \[
-        \pi_j = \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n
-        \indicatorrv{X_{\nu}= j \given X_0 = i}
-    \] -- the \defn{long run proportion of time the chain spends in
-      state \( j \)}
-  \item
+    \item
+        \( d(i) \) -- the period of a state \( i \)
+    \item
+        \( \tau_{ii} \) -- the \defn{return time} to state \( i \) given
+        the chain starts in \( i \)
+    \item
+        \( \tau_{ij} \) -- the time to state \( j \) given the chain
+        starts in \( i \)
+    \item
+        \( f^n_{ii} \) -- the probability that starting from \( i \),
+        the first return to state \( i \) occurs at step \( n \)
+    \item
+        \( f_i = \Prob{\tau_{ii} < \infty} \) -- the probability that
+        starting in \( i \) the process will \emph{ever} reenter state \(
+        i \)
+    \item
+        \[
+            \pi_j = \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^n
+            \indicatorrv{X_{\nu}= j \given X_0 = i}
+        \] -- the \defn{long run proportion of time the chain spends in
+        state \( j \)}
+    \item
         \( m_i \) -- the \defn{expected return time} \( \sum_{\nu=1}^\infty
-    \nu f^\nu_{ii} \).
-  \end{enumerate}
-  
+        \nu f^\nu_{ii} \).
+\end{enumerate}
+
 \visual{Mathematical Ideas}{../../../../CommonInformation/Lessons/mathematicalideas.png}
 \section*{Mathematical Ideas}
 
@@ -219,16 +223,16 @@ between the two urns?
             communicates with \( l \), then \( (P^{n_{ij}})_{ij} > 0 \)
             for some \( n_{ij} \ge 1 \), and likewise \( (P^{n_{jl}})_{jl}
             > 0 \) for some \( n_{jl} \ge 1 \).  Then \( (P^{n_{ij}+n_{jl}})_
-            {il} > (P^{n_{ij}})_{ij}(P^{n_{jl}})_{jl} >0 \) and so it
-            is possible that the process can enter state \( l \) from \(
-            i \) in \( n = n_{ij} + n_{jl} \) steps, so \( l \) is
-            accessible from \( i \).  Likewise, \( (P^{n_{lj}})_{lj} > 0
-            \) for some \( n_{lj} \ge 1 \), and \( (P^{n_{ji}})_{ji} > 0
-            \) for some \( n_{ji} \ge 1 \).  Then \( (P^{n_{lj}})_{lj} (P^
-            {n_{ji}})_{ji} >0 \) and so it is possible that the process
-            can enter state \( j \) in \( n = n_{lj} + n_{ji} \) steps,
-            so \( i \) is accessible from \( l \). That is, \( i \) and \(
-            l \) communicate and communication is transitive.
+            {il} > (P^{n_{ij}})_{ij}(P^{n_{jl}})_{jl} >0 \) and so it is
+            possible that the process can enter state \( l \) from \( i \)
+            in \( n = n_{ij} + n_{jl} \) steps, so \( l \) is accessible
+            from \( i \).  Likewise, \( (P^{n_{lj}})_{lj} > 0 \) for
+            some \( n_{lj} \ge 1 \), and \( (P^{n_{ji}})_{ji} > 0 \) for
+            some \( n_{ji} \ge 1 \).  Then \( (P^{n_{lj}})_{lj} (P^ {n_{ji}})_
+            {ji} >0 \) and so it is possible that the process can enter
+            state \( j \) in \( n = n_{lj} + n_{ji} \) steps, so \( i \)
+            is accessible from \( l \).  That is, \( i \) and \( l \)
+            communicate and communication is transitive.
     \end{description}
 \end{proof}
 
@@ -241,7 +245,7 @@ between the two urns?
 \index{period}
 
 \begin{proposition}
-  \label{prop:stationarydistributions:communicating}
+    \label{prop:stationarydistributions:communicating}
     \begin{enumerate}
         \item
             If \( i \) communicates with \( j \), then \( d(i) = d(j) \).
@@ -278,18 +282,18 @@ between the two urns?
         \item
             Let
             \[
-              A = \setof{n}{n=c_1n_1 + \cdots + c_s n_s, c_s
-                \text{ positive integers}}
+                A = \setof{n}{n=c_1n_1 + \cdots + c_s n_s, c_s \text{%
+                positive integers}}
             \] and
             \[
                 B = \setof{b_1 m_1 + \cdots + b_j m_j}{ m_i \in A , b_i
                 \in \Integers, j \ge 1, i=1,\dots, j}.
             \]
         \item
-            Let \( d' \) be the least \emph{positive} integer in \( B \), where
-            \( d' = b_1 m'_1 + \cdots + b_j m'_j \).  Since \( m'_i \in
-            A \) for all \( i \), each can be written as \( m'_i = c'_{1i}n_1
-            + \cdots + c'_{si}n_s \).
+            Let \( d' \) be the least \emph{positive} integer in \( B \),
+            where \( d' = b_1 m'_1 + \cdots + b_j m'_j \).  Since \( m'_i
+            \in A \) for all \( i \), each can be written as \( m'_i =
+            c'_{1i}n_1 + \cdots + c'_{si}n_s \).
         \item
             The first claim is that \( d' \) is a common divisor of all
             elements of \( A \).  To prove the claim, let \( a = c_1 n_1
@@ -305,44 +309,45 @@ between the two urns?
                 b_i c'_{s i} \right) n_s.
             \end{align*}
         \item
-            This means that \( r \in B \) (with \(m_i = 1 \cdot n_i
-            \in A \) and \(b_i = \left( c_i - q \sum\limits_{\nu=1}^j b_\nu c'_{i \nu}
-                \right) \)).  Since \( 0 \le r < d' \),
-            and \( d' \) is the least \emph{positive} integer in \( B \), then \(
+            This means that \( r \in B \) (with \( m_i = 1 \cdot n_i \in
+            A \) and \( b_i = \left( c_i - q \sum\limits_{\nu=1}^j b_\nu
+            c'_{i \nu} \right) \)).  Since \( 0 \le r < d' \), and \( d'
+            \) is the least \emph{positive} integer in \( B \), then \(
             r = 0 \) and \( d' \) is a divisor of \( a \), establishing
             the first claim.
         \item
-          For simplicity drop the prime on \( d' \) so
-          \( d' = d = \gcd(n_1, \dots, n_s) \).  As in the previous step,
+            For simplicity drop the prime on \( d' \) so \( d' = d =
+            \gcd(n_1, \dots, n_s) \).  As in the previous step,
             rearrange the terms in the representation of \( d = b'_1 m_1
-            + \cdots + b'_j m_j = \alpha_1 n_1 + \cdots + \alpha_s n_s \) so that
-            the terms with positive coefficients are written first.
-            Thus \( d' = N_1 - N_2 \) with \( N_1 \in A \) and \( N_2 \in
-            A \). Let \( M \) be the positive integer \( N_2^2/d \)
-            (a positive integer since \( d' \) is a divisor of
-            \(N_{2}\in A\)).
-            Every integer \( m \ge M \) can be written as \( m = M + K =
-            N_2^2/d + K \), with \( K \ge 0 \).  Using the Division
-            Algorithm \( K = q' (N_2/d) + r' \) with \( 0 \le r' < N_2/d \)
-            and the integer \( q' = \lfloor K/(N_2/d) \rfloor \).  Now
+            + \cdots + b'_j m_j = \alpha_1 n_1 + \cdots + \alpha_s n_s \)
+            so that the terms with positive coefficients are written
+            first. Thus \( d' = N_1 - N_2 \) with \( N_1 \in A \) and \(
+            N_2 \in A \).  Let \( M \) be the positive integer \( N_2^2/d
+            \) (a positive integer since \( d' \) is a divisor of \( N_{2}\in
+            A \)). Every integer \( m \ge M \) can be written as \( m =
+            M + K = N_2^2/d + K \), with \( K \ge 0 \).  Using the
+            Division Algorithm \( K = q' (N_2/d) + r' \) with \( 0 \le
+            r' < N_2/d \) and the integer \( q' = \lfloor K/(N_2/d)
+            \rfloor \).  Now
             \begin{align*}
-              md &= (N_2^2/d + q' N_2/d + r') d \\
-                 &= N_2^2 + q'N_2 + r'd \\
-                 &= N_2^2 + q'N_2 + r'(N_1 - N_2) \\
-                 &= N_2(N_2 + q' -r') + r' N_1.
+                md &= (N_2^2/d + q' N_2/d + r') d \\
+                &= N_2^2 + q'N_2 + r'd \\
+                &= N_2^2 + q'N_2 + r'(N_1 - N_2) \\
+                &= N_2(N_2 + q' -r') + r' N_1.
             \end{align*}
             Recall that \( r' < N_2/d \), so \( r' \le N_2 \).
         \item
-            Since \( N_2 \in A \) and \( N_1 \in A \), the previous
-            step shows there exist
-            nonnegative integers \( c_1, c_2, \dots, c_s \) such that
+            Since \( N_2 \in A \) and \( N_1 \in A \), the previous step
+            shows there exist nonnegative integers \( c_1, c_2, \dots, c_s
+            \) such that
             \[
-              md = \sum\limits_{\nu=1}^s c_\nu n_\nu.
+                md = \sum\limits_{\nu=1}^s c_\nu n_\nu.
             \]
     \end{enumerate}
 \end{proof}
 
-\begin{proof}[of Propostion~\ref{prop:stationarydistributions:communicating}]
+\begin{proof}[of Propostion~\ref
+    {prop:stationarydistributions:communicating}]
     \begin{enumerate}
         \item
             \begin{enumerate}
@@ -372,8 +377,8 @@ between the two urns?
                 \item
                     Now \( d(j) \) is a divisor of \( n_{ii} \) and \( d
                     (i) = \gcd(n_{ii}) \) so \( d(j) \le d(i) \).
-                  \item 
-                    By a symmetrical arument, \(d(i) \le d(j) \) so \(
+                \item
+                    By a symmetrical arument, \( d(i) \le d(j) \) so \(
                     d(i) = d(j) \).
             \end{enumerate}
         \item
@@ -397,11 +402,11 @@ between the two urns?
                     from \( j \) in \( m_{ji} \) steps.
                 \item
                     Using the Markov property of independence of the
-                    past and the future given the present state,
-                    \( (P^{n_j})_{ii} > 0 \) implies
-                    that for any positive integer \( c_j \), \( (P^{c_j
-                    n_j})_ {ii} > 0 \), that is, the probability of \( c_j
-                    \) sequential returns is still positive.
+                    past and the future given the present state, \( (P^{n_j})_
+                    {ii} > 0 \) implies that for any positive integer \(
+                    c_j \), \( (P^{c_j n_j})_ {ii} > 0 \), that is, the
+                    probability of \( c_j \) sequential returns is still
+                    positive.
                 \item
                     By the number theoretic Lemma~%
                     \ref{lem:stationarydistributions:numtheory}, there
@@ -413,11 +418,11 @@ between the two urns?
                         {c_k n_k})_{ii} >0.
                     \]
             \end{enumerate}
-          \item
+        \item
             Using the hypothesis
             \[
-                (P^{m + n d(i)})_{ji} \ge (P^{n d(i)})_{ii} (P^m)_{ji}
-                > 0.
+                (P^{m + n d(i)})_{ji} \ge (P^{n d(i)})_{ii} (P^m)_{ji} >
+                0.
             \] That is, the probability of an excursion to \( j \) from \(
             i \) in \( m + n d(i) \) steps is at least as great as the
             probability of an excursion from \( i \) to \( i \) in \( n
@@ -471,7 +476,7 @@ between the two urns?
 \begin{definition}
     For any state \( i \), let \( f_i = \Prob{\tau_{ii} < \infty} \)
     denote the probability that starting in \( i \) the process will
-    \emph{ever} reenter state \( i \). State \( i \) is \defn{recurrent}
+    \emph{ever} reenter state \( i \).  State \( i \) is \defn{recurrent}
     if \( f_i = 1 \) and \defn{transient} if \( f_{i} < 1 \).
 \end{definition}
 \index{recurrent}
@@ -480,7 +485,7 @@ between the two urns?
 \begin{remark}
     Note that the qualities of recurrence and transience are
     complementary, a state is one or the other, there are no other
-    possibilities. If the state \( i \) is transient, \( f_i < 1 \),
+    possibilities.  If the state \( i \) is transient, \( f_i < 1 \),
     then \( i \) will be visited a finite random number of times.
     Starting from \( i \) the number of visits \( N_i \) (counting the
     starting visit) to transient state \( i \) has a geometric
@@ -614,9 +619,10 @@ between the two urns?
             Choose the smallest \( n \ge 1 \) such that \( (P^n)_{ji} >
             0 \).
         \item
-            \label{enum:stationarydistributions:defA} With \( x_0 = j \), let \( A = \set{x_l \ne j,
-            1 \le l < n, x_n = i} \) be the path of states visited
-            to \( i \).  Note that \( \Prob{A} > 0 \).
+            \label{enum:stationarydistributions:defA} With \( x_0 = j \),
+            let \( A = \set{x_l \ne j, 1 \le l < n, x_n = i} \) be the
+            path of states visited to \( i \).  Note that \( \Prob{A} >
+            0 \).
         \item
             Then \( \E{\tau_{jj}} \ge \E{\tau_{jj} \given A} \cdot \Prob
             {A} = (n + \E{\tau_{ij}}) \cdot \Prob{A} \).  Hence \( \E{\tau_
@@ -703,17 +709,17 @@ between the two urns?
             \[
                 \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^{n}
                 \sum\limits_{j \in \mathcal{X}} (P^\nu)_{ij} = 0.
-            \] 
-          \item But
+            \]
+        \item
+            But
             \[
-              \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^{n}
+                \lim_{n \to \infty} \frac{1}{n} \sum\limits_{\nu=1}^{n}
                 \sum\limits_{j \in \mathcal{X}} (P^\nu)_{ij} = \lim_{n
-                  \to \infty} \frac{1}{n}\lim_{n \to \infty}
-                \frac{1}{n} \sum\limits_{\nu=1}^{n}
-                \sum\limits_{j \in \mathcal{X}} (P^\nu)_{ij}
-                \sum\limits_{\nu=1}^{n} 1 =
-                \lim_{n \to \infty} \frac{1}{n} \cdot n = 1,
-              \] a contradiction.
+                \to \infty} \frac{1}{n}\lim_{n \to \infty} \frac{1}{n}
+                \sum\limits_{\nu=1}^{n} \sum\limits_{j \in \mathcal{X}}
+                (P^\nu)_{ij} \sum\limits_{\nu=1}^{n} 1 = \lim_{n \to
+                \infty} \frac{1}{n} \cdot n = 1,
+            \] a contradiction.
         \item
             Thus, the state must be positive recurrent.
     \end{enumerate}
@@ -725,19 +731,19 @@ between the two urns?
 \index{ergodic}
 
 \begin{example}
-  In infinite state space Markov chains recurrence, transience, positive
-  recurrence and null recurrence are distinct.  Symmetric nearest
-  neighbor random walk on \( \Integers \) and \( \Integers^2 \) is
-  null recurrent.  However symmetric nearest
-  neighbor random walk on \( \Integers^N \) is transient.  See
-  \cite[Chapter 13]{lesigne05}
+    In infinite state space Markov chains recurrence, transience,
+    positive recurrence and null recurrence are distinct.  Symmetric
+    nearest neighbor random walk on \( \Integers \) and \( \Integers^2 \)
+    is null recurrent.  However symmetric nearest neighbor random walk
+    on \( \Integers^N \) is transient.  See
+    \cite[Chapter 13]{lesigne05}
 \end{example}
 \subsection*{Fundamental Theorems}
 
 \begin{remark}
     Make the notation convention that \( (P^{0})_{ii} = 1 \).  Define
-    the \defn{expected return time} as \( m_i = \sum_ {\nu=0}^
-    {\infty} \nu f^\nu_{ii} \).
+    the \defn{expected return time} as \( m_i = \sum_ {\nu=0}^ {\infty}
+    \nu f^\nu_{ii} \).
 \end{remark}
 
 \begin{definition}
@@ -762,7 +768,8 @@ between the two urns?
             \] and
         \item
             \[
-                \lim_{n \to \infty} (P^{n})_{ij} = \lim_{n \to \infty} (P^{n})_{ii}.
+                \lim_{n \to \infty} (P^{n})_{ij} = \lim_{n \to \infty} (P^
+                {n})_{ii}.
             \]
     \end{enumerate}
 \end{theorem}
@@ -776,7 +783,8 @@ between the two urns?
                 (P^n)_{ji} = \sum\limits_{\nu=0}^n f^{\nu}_{ji} (P^{n-\nu})_
                 {ii}
             \] for \( i \ne j \) and \( n \ge 0 \).
-          \item Change the order of summation
+        \item
+            Change the order of summation
             \[
                 (P^n)_{ji} = \sum\limits_{\nu=0}^n f^{n-\nu}_{ji} (P^{\nu})_
                 {ii}
@@ -789,8 +797,8 @@ between the two urns?
             \), and \( \lim_{\nu \to \infty} x_\nu = c \).  The goal is
             to prove that \( \lim_{\nu \to \infty} y_\nu = c \).
         \item
-            Taking the difference with \( c \) and break into sums
-            from \( 0 \) to \( n \) and \( n+1 \) to \( \infty \)
+            Taking the difference with \( c \) and break into sums from \(
+            0 \) to \( n \) and \( n+1 \) to \( \infty \)
             \[
                 y_n - c = \sum\limits_{\nu=0}^n a_{n-\nu} x_\nu -c \sum\limits_
                 {\nu=0}^{\infty} a_n = \sum\limits_{\nu=0}^n a_{n-\nu} (x_k
@@ -883,16 +891,17 @@ between the two urns?
             \pi \\
             \vdots \\
             \pi
-        \end{pmatrix}.
+        \end{pmatrix}
+        .
     \]
 \end{remark}
 
 \begin{remark}
     Observing the Markov chain at a time far in the future, \( \pi_j \)
-    is approximately the probability the chain is in state \( j \).  To see this:  Let
-    \( N \) be a random observation time, with uniform distribution over
-    the integers \( \set{1, 2, \dots, n} \), independent of the chain.
-    Then conditioning on \( N \)
+    is approximately the probability the chain is in state \( j \).  To
+    see this:  Let \( N \) be a random observation time, with uniform
+    distribution over the integers \( \set{1, 2, \dots, n} \),
+    independent of the chain. Then conditioning on \( N \)
     \[
         \Prob{X_N = j} = \sum\limits_{\nu=1}^n \Prob{X_{\nu} = j \given
         X_0 = i} \Prob{N = m} = \frac{1}{n} \sum\limits_{\nu=1}^n (P^{\nu})_
@@ -943,8 +952,8 @@ between the two urns?
             \[
                 \pi_i \ge \sum\limits_{\nu=0}^\infty \pi_{\nu} (P^2)_{\nu
                 i}
-            \] and then by induction and renaming the state index from
-            \( i \) back to \( j \)
+            \] and then by induction and renaming the state index from \(
+            i \) back to \( j \)
             \[
                 \pi_j \ge \sum\limits_{\nu=0}^\infty \pi_\nu (P^n)_{\nu
                 j}.
@@ -1008,16 +1017,16 @@ between the two urns?
         \end{pmatrix}
     \] has no limiting distribution but \( \pi = (1/2, 1/2) \) is a
     stationary distribution.  Notice that this Markov chain is not
-    aperiodic so it fails to satisfy the requirements of the
-    Fundamental Theorem.
+    aperiodic so it fails to satisfy the requirements of the Fundamental
+    Theorem.%
     \index{stationary probability distribution}
 \end{remark}
 
 \begin{remark}
-    The Fundamental Theorem says that a probability transition matrix for
-    an irreducible ergodic Markov chain has a \emph{left} eigenvector
-    with corresponding eigenvalue \( 1 \).  This is a special case of
-    the more general Perron-Frobenius Theorem.
+    The Fundamental Theorem says that a probability transition matrix
+    for an irreducible ergodic Markov chain has a \emph{left}
+    eigenvector with corresponding eigenvalue \( 1 \).  This is a
+    special case of the more general Perron-Frobenius Theorem.
 \end{remark}
 
 \begin{remark}
@@ -1107,8 +1116,8 @@ than is at first obvious.  It is also similar to a more serious
 application, a finite state machine, an abstract machine that can be in
 exactly one of a finite number of states at any given time.  The finite
 state machine can change from one state to another in response to some
-inputs.  Alternatively, this is an example of a random walk on a
-graph, illustrated in Figure~%
+inputs.  Alternatively, this is an example of a random walk on a graph,
+illustrated in Figure~%
 \ref{fig:stationarydistributions:bathroomoccupancy}.
 
 \begin{quotation}
@@ -1147,19 +1156,18 @@ graph, illustrated in Figure~%
     \end{enumerate}
 \end{quotation}
 
-The first step defines the states and transition probabilities.  
-Because the bathroom can be either \emph{occupied} or
-\emph{vacant}, and the sign in front can either read ``Vacant'' or
-``Occupied'', there are at least four states, one for each possible
-pair of occupation state and sign.  However, 
-consider the state ``bathroom is occupied and the sign says it's
-occupied''.  The states must distinguish between the cases where the person
-occupying the bathroom is conscientious (they will definitely slide the
-sign to ``Vacant'' when they leave) or not (they might leave the sign as
-``Occupied'' after they leave).
+The first step defines the states and transition probabilities. Because
+the bathroom can be either \emph{occupied} or \emph{vacant}, and the
+sign in front can either read ``Vacant'' or ``Occupied'', there are at
+least four states, one for each possible pair of occupation state and
+sign.  However, consider the state ``bathroom is occupied and the sign
+says it's occupied''.  The states must distinguish between the cases
+where the person occupying the bathroom is conscientious (they will
+definitely slide the sign to ``Vacant'' when they leave) or not (they
+might leave the sign as ``Occupied'' after they leave).
 
-Therefore augment the states to the Markov chain corresponding to
-the different ways in which the bathroom can be occupied.  Consider that
+Therefore augment the states to the Markov chain corresponding to the
+different ways in which the bathroom can be occupied.  Consider that
 there are three types of users:  oblivious, forgetful, and
 conscientious, each of proportion \( 1/3 \).
 
@@ -1227,74 +1235,55 @@ A state transition diagram is in Figure~%
 \ref{fig:stationarydistributions:bathroomoccupancy}.
 
 \begin{figure}[htbp]
-\begin{asy}
-settings.outformat = "pdf";
+    \begin{asy}
+        settings.outformat = "pdf";
 
-size(5inches);
+        size(5inches);
 
-real myfontsize = 12;
-real mylineskip = 1.2*myfontsize;
-pen mypen = fontsize(myfontsize, mylineskip);
-defaultpen(mypen);
+        real myfontsize = 12; real mylineskip = 1.2*myfontsize; pen
+        mypen = fontsize(myfontsize, mylineskip); defaultpen(mypen);
 
-real marge=1mm;
-pair z1=(-1, 1), z2=(0, 1), z3=(1, 1);
-pair z4=(-1, 0), z5=(0, 0), z6=(1, 0);
-transform r=scale(1.0);
+        real marge=1mm; pair z1=(-1, 1), z2=(0, 1), z3=(1, 1); pair z4=(-1,
+        0), z5=(0, 0), z6=(1, 0); transform r=scale(1.0);
 
-object state_OCO=draw("OCO",ellipse,z1,marge),
-state_VO =draw("VO",ellipse,z2,marge),
-state_OOO=draw("OOO",ellipse,z3,marge),
-state_OFO=draw("OFO",ellipse,z4,marge),
-state_VV =draw("VV",ellipse,z5,marge),
-state_OOV=draw("OOV",ellipse,z6,marge);
+        object state_OCO=draw("OCO",ellipse,z1,marge), state_VO =draw("VO",ellipse,z2,marge),
+        state_OOO=draw("OOO",ellipse,z3,marge), state_OFO=draw("OFO",ellipse,z4,marge),
+        state_VV =draw("VV",ellipse,z5,marge), state_OOV=draw("OOV",ellipse,z6,marge);
 
-add(new void(picture pic, transform t) {
-draw(pic,r*Label("$1/2$"),
-point(state_OCO,NW,t){NW}..{NE}point(state_OCO,SW,t),Arrow);
-draw(pic,r*Label("$1/2$", align=N),
-point(state_VO,NW,t){NW}..{SW}point(state_VO,NE,t),Arrow);
-draw(pic,r*Label("$1/2$", align=E),
-point(state_OOO,NE,t){NE}..{NW}point(state_OOO,SE,t),Arrow);
-  });
+        add(new void(picture pic, transform t) { draw(pic,r*Label("\(
+        1/2 \)"), point(state_OCO,NW,t){NW}..{NE}point(state_OCO,SW,t),Arrow);
+        draw(pic,r*Label("\( 1/2 \)", align=N), point(state_VO,NW,t){NW}..
+        {SW}point(state_VO,NE,t),Arrow); draw(pic,r*Label("\( 1/2 \)",
+        align=E), point(state_OOO,NE,t){NE}..{NW}point(state_OOO,SE,t),Arrow);
+        });
 
-add(new void(picture pic, transform t) {
-draw(pic,r*Label("$1/2$"),
-point(state_OFO,NW,t){NW}..point(state_OFO,SW,t),Arrow);
-draw(pic,r*Label("$1/2$", align=S),
-point(state_VV,SW,t){SW}..point(state_VV,SE,t),Arrow);
-draw(pic,r*Label("$1/2$", align=E),
-point(state_OOV,NE,t){NE}..point(state_OOV,SE,t),Arrow);
-  });
+        add(new void(picture pic, transform t) { draw(pic,r*Label("\(
+        1/2 \)"), point(state_OFO,NW,t){NW}..point(state_OFO,SW,t),Arrow);
+        draw(pic,r*Label("\( 1/2 \)", align=S), point(state_VV,SW,t){SW}..point
+        (state_VV,SE,t),Arrow); draw(pic,r*Label("\( 1/2 \)", align=E),
+        point(state_OOV,NE,t){NE}..point(state_OOV,SE,t),Arrow); });
 
-add(new void(picture pic, transform t) {
-    draw(pic,r*Label("$1/6$", align=N),
-point(state_VO,NE,t)..point(state_OOO,NW,t),Arrow);
-    draw(pic,r*Label("$1/2$", align=S),
-point(state_OOO,SW,t)..point(state_VO,SE,t),Arrow);
-    draw(pic,r*Label("$1/6$", align=N),
-point(state_VV,NE,t)..point(state_OOV,NW,t),Arrow);
-    draw(pic,r*Label("$1/2$", align=S),
-point(state_OOV,SW,t)..point(state_VV,SE,t),Arrow);
-});
+        add(new void(picture pic, transform t) { draw(pic,r*Label("\(
+        1/6 \)", align=N), point(state_VO,NE,t)..point(state_OOO,NW,t),Arrow);
+        draw(pic,r*Label("\( 1/2 \)", align=S), point(state_OOO,SW,t)..point
+        (state_VO,SE,t),Arrow); draw(pic,r*Label("\( 1/6 \)", align=N),
+        point(state_VV,NE,t)..point(state_OOV,NW,t),Arrow); draw(pic,r*Label
+        ("\( 1/2 \)", align=S), point(state_OOV,SW,t)..point(state_VV,SE,t),Arrow);
+        });
 
-add(new void(picture pic, transform t) {
-    draw(pic,r*Label("$1/6$", align=N),
-point(state_VO,NW,t)..point(state_OCO,NE,t),Arrow);
-    draw(pic,r*Label("$1/6$", align=2N, position=Relative(0.2)),
-point(state_VO,W,t)..point(state_OFO,NE,t),Arrow);
-    draw(pic,r*Label("$1/6$", align=2N, position=Relative(0.2)),
-point(state_VV,NW,t)..point(state_OCO,SE,t),Arrow);
-    draw(pic,r*Label("$1/6$", align=S),
-point(state_VV,SW,t)..point(state_OFO,SE,t),Arrow);
-    draw(pic,r*Label("$1/2$", align=3S, position=Relative(0.2)),
-point(state_OCO,S,t)..point(state_VV,W,t),Arrow);
-    draw(pic,r*Label("$1/4$", align=3S, position=Relative(0.2)),
-point(state_OFO,E,t)..point(state_VO,SW,t),Arrow);
-    draw(pic,r*Label("$1/4$", align=N, position=Relative(0.5)),
-point(state_OFO,E,t)..point(state_VV,W,t),Arrow);
-});
-\end{asy}
+        add(new void(picture pic, transform t) { draw(pic,r*Label("\(
+        1/6 \)", align=N), point(state_VO,NW,t)..point(state_OCO,NE,t),Arrow);
+        draw(pic,r*Label("\( 1/6 \)", align=2N, position=Relative(0.2)),
+        point(state_VO,W,t)..point(state_OFO,NE,t),Arrow); draw(pic,r*Label
+        ("\( 1/6 \)", align=2N, position=Relative(0.2)), point(state_VV,NW,t)..point
+        (state_OCO,SE,t),Arrow); draw(pic,r*Label("\( 1/6 \)", align=S),
+        point(state_VV,SW,t)..point(state_OFO,SE,t),Arrow); draw(pic,r*Label
+        ("\( 1/2 \)", align=3S, position=Relative(0.2)), point(state_OCO,S,t)..point
+        (state_VV,W,t),Arrow); draw(pic,r*Label("\( 1/4 \)", align=3S,
+        position=Relative(0.2)), point(state_OFO,E,t)..point(state_VO,SW,t),Arrow);
+        draw(pic,r*Label("\( 1/4 \)", align=N, position=Relative(0.5)),
+        point(state_OFO,E,t)..point(state_VV,W,t),Arrow); });
+    \end{asy}
     \caption{The state transition diagram for bathroom occupancy.}%
     \label{fig:stationarydistributions:bathroomoccupancy}
 \end{figure}
@@ -1338,27 +1327,24 @@ splits equally over the \( 2 \) sign states.
 
 \subsection*{Example on an Infinite State Space}
 
-Consider a random walk restricted to the non-negative integers.  Here
-\( P_{0,1} = 1 \) and otherwise, \( P_{i,i-1} = p \) with \( p > 1/2 \)
-and \( P_{i,i+1} = 1- p < 1/2 \).  The restriction \( p > 1/2 \) 
-insures that a stationary distribution exists.   The equations for
-stationarity are
+Consider a random walk restricted to the non-negative integers.  Here \(
+P_{0,1} = 1 \) and otherwise, \( P_{i,i-1} = p \) with \( p > 1/2 \) and
+\( P_{i,i+1} = 1- p < 1/2 \).  The restriction \( p > 1/2 \) insures
+that a stationary distribution exists.  The equations for stationarity
+are
 \[
-  \pi_0 = p \pi_1, \quad \pi_1 = \pi_0 + p \pi_2, \quad \pi_i = (1-p)
-  \pi_{i-1} + p \pi_{i+1} \quad i \ge 2.
-\]
-together with the normalization condition \( \sum_{\nu=0}^{\infty}
-\pi_{\nu} = 1 \).
-The solution is the stationary distribution \( \pi_0 = \frac{2p-1}{2p}
-\) and \( \pi_{\nu} = \frac{2p-1}{2p} \left( \frac{(1-p)^{\nu -
-      1}}{p^{\nu}} \right) \) for \( \nu \ge 1 \).  (See the exercises.)
+    \pi_0 = p \pi_1, \quad \pi_1 = \pi_0 + p \pi_2, \quad \pi_i = (1-p)
+    \pi_{i-1} + p \pi_{i+1} \quad i \ge 2.
+\] together with the normalization condition \( \sum_{\nu=0}^{\infty}
+\pi_{\nu} = 1 \). The solution is the stationary distribution \( \pi_0 =
+\frac{2p-1}{2p} \) and \( \pi_{\nu} = \frac{2p-1}{2p} \left( \frac{(1-p)^
+{\nu - 1}}{p^{\nu}} \right) \) for \( \nu \ge 1 \).  (See the exercises.)
 
-This Markov chain can be interpreted as random walk with negative
-drift and reflecting boundary on the
-non-negative integers.  It can also be interpreted as the embedded
-discrete-time chain for an M/M/1 queue in which \( p =
-\frac{\mu}{\lambda + \mu} \) where  \( \lambda \) is the arrival rate of
-customers and \( \mu \) is the service rate.
+This Markov chain can be interpreted as random walk with negative drift
+and reflecting boundary on the non-negative integers.  It can also be
+interpreted as the embedded discrete-time chain for an M/M/1 queue in
+which \( p = \frac{\mu}{\lambda + \mu} \) where \( \lambda \) is the
+arrival rate of customers and \( \mu \) is the service rate.
 
 \subsection*{Sources}
 
@@ -1368,9 +1354,9 @@ Stochastic Modeling}, Karlin and Taylor, \booktitle{A Second Course in
 Stochastic Processes} and Lessard, \link{http://www.laurentlessard.com/bookproofs/is-this-bathroom-occupied/}
 {Lessard}.
 
-The example of random walk on the non-negative integers is adapted
-from class notes by Karl Sigman,
-\link{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf}{Sigman}.
+The example of random walk on the non-negative integers is adapted from
+class notes by Karl Sigman, \link{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf}
+{Sigman}.
 
 \nocite{ross97}
 \nocite{taylor98-introd-stoch-model}
@@ -1384,26 +1370,21 @@ from class notes by Karl Sigman,
 \subsection*{Algorithm}
 
 \begin{algorithm}[H]
-  \SetAlgoLined
-  \KwData{State names and probability transition matrix}
-  \KwResult{Information about a simple Markov chain}
+    \SetAlgoLined \KwData{State names and probability transition matrix}
+    \KwResult{Information about a simple Markov chain}
 
-  initialization\;
-  Load Markov chain library\;
-  Set state names, set transition probability matrix, set start
-  state\;
-  Set an example length and create a sample path of example length\;
-  Set a long path length, and a transient time\;
-  Create a long sample path\;
-  Slice the long sample path from the transient time to the end\;
-  In the slice count the appearance of each state\;
-  Store in an empirical array\;
-  Compute the theoretical stable array\;
+    initialization\; Load Markov chain library\; Set state names, set
+    transition probability matrix, set start state\; Set an example
+    length and create a sample path of example length\; Set a long path
+    length, and a transient time\; Create a long sample path\; Slice the
+    long sample path from the transient time to the end\; In the slice
+    count the appearance of each state\; Store in an empirical array\;
+    Compute the theoretical stable array\;
 
-  \KwRet{Stable distribution and theoretical stable distribution}
-  \caption{Bathroom occupancy Markov chain simulation.}
+    \KwRet{Stable distribution and theoretical stable distribution}
+    \caption{Bathroom occupancy Markov chain simulation.}
 \end{algorithm}
-  
+
 \subsection*{Scripts}
 
 \input{stationarydistributions_scripts}
@@ -1433,6 +1414,9 @@ from class notes by Karl Sigman,
     \item
         An ergodic Markov chain.
 \end{enumerate}
+stationarydistributions.tex.orig:1436:begin/end environment name mismatch
+	begin {} at line 0: end {exercise} at line 1436
+stationarydistributions.tex.orig:1436:negative environment level at this line: reset to zero
 \end{exercise}
 \begin{solution}
     \begin{enumerate}[label=(\alph*)]
@@ -1468,7 +1452,8 @@ from class notes by Karl Sigman,
                 1 & 0 & 0 \\
                 1/2 & 0 & 1/2 \\
                 0 &0 & 1
-            \end{pmatrix}.
+            \end{pmatrix}
+            .
         \] State \( 2 \) communicates with states \( 1 \) and \( 3 \),
         but that is all.
     \item
@@ -1477,20 +1462,23 @@ from class notes by Karl Sigman,
                 1/2 & 1/2 & 0 \\
                 1/2 & 0 & 1/2 \\
                 0 & 1/2 & 1/2 \\
-            \end{pmatrix}.
+            \end{pmatrix}
+            .
         \]
 \end{enumerate}
+stationarydistributions.tex.orig:1483:begin/end environment name mismatch
+	begin {} at line 0: end {solution} at line 1483
+stationarydistributions.tex.orig:1483:negative environment level at this line: reset to zero
 \end{solution}
 
 \begin{exercise}
     Randomly distribute three balls between two urns, labeled \( A \)
     and \( B \).  Each period, select an urn at random, and if it is not
-    empty, remove a ball from that urn and put it in the other
-    urn. If the urn is empty, go to the next period. Make
-    a Markov chain model of this situation and classify all states. In
-    the long run what fraction of time is urn \( A \) empty?  Does this
-    depend on how the balls are initially distributed between the two
-    urns?
+    empty, remove a ball from that urn and put it in the other urn.  If
+    the urn is empty, go to the next period.  Make a Markov chain model
+    of this situation and classify all states.  In the long run what
+    fraction of time is urn \( A \) empty?  Does this depend on how the
+    balls are initially distributed between the two urns?
 \end{exercise}
 \begin{solution}
     The \( 4 \) states are the number of balls in urn \( A \), from \( 0
@@ -1567,14 +1555,14 @@ from class notes by Karl Sigman,
         VO & r(1-v) & q(1-v) & p(1-v) & 0 & v & 0 \cr
         VV & r(1-v) & q(1-v) & 0 & p(1-v) & 0 & v \cr
         }.
-      \] The stationary distribution is:
-      \begin{multline*}
+    \] The stationary distribution is:
+    \begin{multline*}
         \left( r(1-v), q(1-v), \frac{p(q + 2p)(1-v)}{2}, \frac{p(2r + q)
-            (1-v)}{2}, \right.\\
-          \left. \frac{(q + 2p)v}{2}, \frac{(2r + q)v}{2} \right).
-      \end{multline*}
+        (1-v)}{2}, \right.\\
+        \left.  \frac{(q + 2p)v}{2}, \frac{(2r + q)v}{2} \right).
+    \end{multline*}
     As \( v \to 1 \), the stationary distribution tends to \( \left(0,
-    0, 0, 0, \frac{(q + 2p)}{2}, \frac{(2r + q)}{2} \right) \). As \( v
+    0, 0, 0, \frac{(q + 2p)}{2}, \frac{(2r + q)}{2} \right) \).  As \( v
     \to 0 \), the stationary distribution tends to \( \left(r, q, \frac{p
     (q + 2p)}{2}, \frac{p(2r + q)}{2}, 0, 0 \right) \).
 \end{solution}
@@ -1656,13 +1644,13 @@ from class notes by Karl Sigman,
                     excursion from \( j \) to \( i \), then from \( i \)
                     to \( i \), and from \( i \) to \( j \).
                 \item
-                  Then
-                  \begin{multline*}
-                     \sum_{n=1}^{\infty}(P^n)_{jj} > \sum_{n=r+s1}^{\infty}
-                     (P^r)_{ji}(P^{n-r-s})_{ii}(P^s)_{ij} = \\
-                     (P^r)_{ji}\left(\sum_{n=r+s+1}^{\infty}(P^{n-r-s})_{ii}\right)(P^s)_{ij}
-                     = \infty
-                  \end{multline*}
+                    Then
+                    \begin{multline*}
+                        \sum_{n=1}^{\infty}(P^n)_{jj} > \sum_{n=r+s1}^{\infty}
+                        (P^r)_{ji}(P^{n-r-s})_{ii}(P^s)_{ij} = \\
+                        (P^r)_{ji}\left(\sum_{n=r+s+1}^{\infty}(P^{n-r-s})_
+                        {ii}\right)(P^s)_{ij} = \infty
+                    \end{multline*}
                     Therefore, \( j \) is recurrent.
             \end{enumerate}
         \item
@@ -1670,7 +1658,7 @@ from class notes by Karl Sigman,
             transient, but \( j \) is recurrent.  Since \( j \)
             communicates with \( i \) and \( j \) is recurrent, by the
             previous proof then \( i \) must be recurrent, a
-            contradiction. Therefore, \( j \) must be transient.
+            contradiction.  Therefore, \( j \) must be transient.
         \item
             The statement follows from the definition of irreducible and
             the previous proofs.
@@ -1708,23 +1696,24 @@ from class notes by Karl Sigman,
 \end{solution}
 
 \begin{exercise}
-For the  random walk restricted to the non-negative integers with
-\( P_{0,1} = 1 \) and otherwise, \( P_{i,i-1} = p \) with \( p > 1/2 \)
-and \( P_{i,i+1} = 1- p < 1/2 \), show that the stationary distribution is
-\( \pi_0 = \frac{2p-1}{2p}
-\) and \( \pi_{\nu} = \frac{2p-1}{2p} \left( \frac{(1-p)^{\nu -
-      1}}{p^{\nu}} \right) \) for \( \nu \ge 1 \).
+    For the random walk restricted to the non-negative integers with \(
+    P_{0,1} = 1 \) and otherwise, \( P_{i,i-1} = p \) with \( p > 1/2 \)
+    and \( P_{i,i+1} = 1- p < 1/2 \), show that the stationary
+    distribution is \( \pi_0 = \frac{2p-1}{2p} \) and \( \pi_{\nu} =
+    \frac{2p-1}{2p} \left( \frac{(1-p)^{\nu - 1}}{p^{\nu}} \right) \)
+    for \( \nu \ge 1 \).
 \end{exercise}
 \begin{solution}
-  It is immediate that \( \pi_1 = \frac{1}{p} \pi_0 \).  Further, by induction
-  \( \pi_i = \frac{(1-p)^{i-1}}{p^i} \).  The normalization condition is
-  \[
-    \pi_0 \left( 1 + \frac{1}{p} + \frac{(1-p)}{p^2} + \frac{(1-p)^{2}}{p^3} + \cdots \right) = 1.
-  \]
-  Now is apparent why \( p > 1/2 \) is necessary for stationarity. The
-  normalization simplifies to \( \pi_0 \left( 1 + \frac{1}{2p-1} \right) = 1 \).  Then
-  \( \pi_{\nu} = \frac{2p-1}{2p} \left( \frac{(1-p)^{\nu -
-      1}}{p^{\nu}} \right) \) for \( \nu \ge 1 \).
+    It is immediate that \( \pi_1 = \frac{1}{p} \pi_0 \).  Further, by
+    induction \( \pi_i = \frac{(1-p)^{i-1}}{p^i} \).  The normalization
+    condition is
+    \[
+        \pi_0 \left( 1 + \frac{1}{p} + \frac{(1-p)}{p^2} + \frac{(1-p)^{2}}
+        {p^3} + \cdots \right) = 1.
+    \] Now is apparent why \( p > 1/2 \) is necessary for stationarity.
+    The normalization simplifies to \( \pi_0 \left( 1 + \frac{1}{2p-1}
+    \right) = 1 \).  Then \( \pi_{\nu} = \frac{2p-1}{2p} \left( \frac{(1-p)^
+    {\nu - 1}}{p^{\nu}} \right) \) for \( \nu \ge 1 \).
 \end{solution}
 \hr
 
@@ -1761,26 +1750,15 @@ Last modified:  \flastmod
 
 \end{document}
 
-File name                  : stationarydistributions.tex
-Number of characters       : 62329
-Number of words            : 6525
-Percent of complex words   : 16.77
-Average syllables per word : 1.7254
-Number of sentences        : 188
-Average words per sentence : 34.7074
-Number of text lines       : 1386
-Number of blank lines      : 254
-Number of paragraphs       : 244
-
+File name :  stationarydistributions.tex Number of characters :  62329
+Number of words :  6525 Percent of complex words :  16.77 Average
+syllables per word :  1.7254 Number of sentences :  188 Average words
+per sentence :  34.7074 Number of text lines :  1386 Number of blank
+lines :  254 Number of paragraphs :  244
 
 READABILITY INDICES
 
-Fog                        : 20.5895
-Flesch                     : 25.6411
-Flesch-Kincaid             : 18.3052
-
-
-
+Fog :  20.5895 Flesch :  25.6411 Flesch-Kincaid :  18.3052
 
 %%% Local Variables:
 %%% TeX-master: t
