@@ -6,8 +6,9 @@
 
 \documentclass[12pt]{article}
 
-\input{../../../../etc/macros} %% \input{../../../../etc/mzlatex_macros}
-\input{../../../../etc/pdf_macros}
+\input{../../../../etc/macros}
+\input{../../../../etc/mzlatex_macros}
+%% \input{../../../../etc/pdf_macros}
 
 \bibliographystyle{plain}
 
@@ -1370,19 +1371,26 @@ class notes by Karl Sigman, \link{http://www.columbia.edu/~ks20/stochastic-I/sto
 \subsection*{Algorithm}
 
 \begin{algorithm}[H]
-    \SetAlgoLined \KwData{State names and probability transition matrix}
+    \DontPrintSemicolon
+    \KwData{State names and probability transition matrix}
     \KwResult{Information about a simple Markov chain}
-
-    initialization\; Load Markov chain library\; Set state names, set
-    transition probability matrix, set start state\; Set an example
-    length and create a sample path of example length\; Set a long path
-    length, and a transient time\; Create a long sample path\; Slice the
-    long sample path from the transient time to the end\; In the slice
-    count the appearance of each state\; Store in an empirical array\;
+    \BlankLine
+    \emph{Initialization and sample paths}\;
+    Load Markov chain library\;
+    Set state names, set transition probability matrix, set start
+    state\;
+    Set an example length and create a sample path of example length\;
+    \BlankLine
+    \emph{Simulation of stationary distribution and comparison to theoretical}\;
+    Set a long path length, and a transient time\;
+    Create a long sample path\;
+    Slice the long sample path from the transient time to the end\;
+    In the slice count the appearance of each state\;
+    Store in an empirical array\;
     Compute the theoretical stable array\;
 
     \KwRet{Stable distribution and theoretical stable distribution}
-    \caption{Bathroom occupancy Markov chain simulation.}
+    \caption{Markov chain simulation of bathroom example.}
 \end{algorithm}
 
 \subsection*{Scripts}
@@ -1761,5 +1769,8 @@ READABILITY INDICES
 Fog :  20.5895 Flesch :  25.6411 Flesch-Kincaid :  18.3052
 
 %%% Local Variables:
+%%% TeX-master: t
+%%% TeX-master: t
+%%% TeX-master: t
 %%% TeX-master: t
 %%% End:
